@@ -62538,7 +62538,7 @@ exports = module.exports = __webpack_require__(18)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* header */\n.navbar-brand[data-v-b03f2208]{padding: 0;\n}\n.navbar-brand img[data-v-b03f2208]{\n    width: 130px;\n    margin-top: 10px;\n    margin-right: 22px;\n}\n.navbar-static-top[data-v-b03f2208] {\n    border-color: #e7e7e7;\n    background-color: #fff;\n    -webkit-box-shadow: 0px 1px 11px 2px rgba(42, 42, 42, 0.1);\n            box-shadow: 0px 1px 11px 2px rgba(42, 42, 42, 0.1);\n    border-top: 4px solid #00b5ad;\n    margin-bottom: 40px;\n    margin-top: 0px;\n}\na[data-v-b03f2208]{\n    text-decoration: none;\n}\n.el-menu[data-v-b03f2208]{\n    background-color:none !important;\n}\n.el-menu a[data-v-b03f2208]{\n    display:block;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* header */\n.navbar-brand[data-v-b03f2208]{padding: 0;\n}\n.navbar-brand img[data-v-b03f2208]{\n    width: 130px;\n    margin-top: 10px;\n    margin-right: 22px;\n}\n.navbar-static-top[data-v-b03f2208] {\n    border-color: #e7e7e7;\n    background-color: #fff;\n    -webkit-box-shadow: 0px 1px 11px 2px rgba(42, 42, 42, 0.1);\n            box-shadow: 0px 1px 11px 2px rgba(42, 42, 42, 0.1);\n    border-top: 4px solid #00b5ad;\n    margin-bottom: 40px;\n    margin-top: 0px;\n}\na[data-v-b03f2208]{\n    text-decoration: none;\n}\n.el-dropdown-menu__item--divided[data-v-b03f2208]:before, .el-menu[data-v-b03f2208]{\n    background-color:none !important;\n}\n.el-menu[data-v-b03f2208]{\n    background-color:none !important;\n}\n.el-menu a[data-v-b03f2208]{\n    display:block;\n}\n", ""]);
 
 // exports
 
@@ -62701,13 +62701,16 @@ var render = function() {
                 _vm._v("操作日志")
               ]),
               _vm._v(" "),
-              _c("el-menu-item", { attrs: { index: "/doc" } }, [
-                _c(
-                  "a",
-                  { attrs: { href: "https://www.ele.me", target: "_blank" } },
-                  [_vm._v("接口文档")]
-                )
-              ]),
+              _c(
+                "el-menu-item",
+                { attrs: { index: "/doc" } },
+                [
+                  _c("router-link", { attrs: { to: "/doc" } }, [
+                    _vm._v("接口文档")
+                  ])
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "el-menu-item",

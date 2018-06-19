@@ -28,7 +28,7 @@
                     <el-menu-item index="/promiss/users">用户管理</el-menu-item>
                   </el-submenu>
                   <el-menu-item index="/actionlog">操作日志</el-menu-item>
-                  <el-menu-item index="/doc"><a href="https://www.ele.me" target="_blank">接口文档</a></el-menu-item>
+                  <el-menu-item index="/doc"><router-link to="/doc">接口文档</router-link></el-menu-item>
                   <el-menu-item index="/login" style="float:right;"><router-link to="/login">登录</router-link></el-menu-item>
                 </el-menu>
             </div>
@@ -80,6 +80,9 @@
     }
     a{
         text-decoration: none;
+    }
+    .el-dropdown-menu__item--divided:before, .el-menu{
+        background-color:none !important;
     }
     .el-menu{
         background-color:none !important;
