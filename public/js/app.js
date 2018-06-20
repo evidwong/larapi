@@ -21876,6 +21876,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -22144,7 +22177,11 @@ var render = function() {
             "el-form",
             {
               staticClass: "demo-form-inline",
-              attrs: { inline: true, model: _vm.formInline }
+              attrs: {
+                inline: true,
+                model: _vm.formInline,
+                "label-width": "70px"
+              }
             },
             [
               _c(
@@ -22152,7 +22189,7 @@ var render = function() {
                 [
                   _c(
                     "el-form-item",
-                    { attrs: { label: "审批人" } },
+                    { attrs: { label: "商户名称" } },
                     [
                       _c("el-input", {
                         attrs: { placeholder: "审批人" },
@@ -22170,31 +22207,36 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "el-form-item",
-                    { attrs: { label: "活动区域" } },
+                    { attrs: { label: "技术顾问" } },
                     [
-                      _c(
-                        "el-select",
-                        {
-                          attrs: { placeholder: "活动区域" },
-                          model: {
-                            value: _vm.formInline.name,
-                            callback: function($$v) {
-                              _vm.$set(_vm.formInline, "name", $$v)
-                            },
-                            expression: "formInline.name"
-                          }
-                        },
-                        [
-                          _c("el-option", {
-                            attrs: { label: "区域一", value: "shanghai" }
-                          }),
-                          _vm._v(" "),
-                          _c("el-option", {
-                            attrs: { label: "区域二", value: "beijing" }
-                          })
-                        ],
-                        1
-                      )
+                      _c("el-input", {
+                        attrs: { placeholder: "审批人" },
+                        model: {
+                          value: _vm.formInline.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formInline, "name", $$v)
+                          },
+                          expression: "formInline.name"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "登入次数" } },
+                    [
+                      _c("el-input", {
+                        attrs: { placeholder: "审批人" },
+                        model: {
+                          value: _vm.formInline.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formInline, "name", $$v)
+                          },
+                          expression: "formInline.name"
+                        }
+                      })
                     ],
                     1
                   )
@@ -22207,7 +22249,7 @@ var render = function() {
                 [
                   _c(
                     "el-form-item",
-                    { attrs: { label: "审批人" } },
+                    { attrs: { label: "公司类型" } },
                     [
                       _c("el-input", {
                         attrs: { placeholder: "审批人" },
@@ -22225,31 +22267,216 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "el-form-item",
-                    { attrs: { label: "活动区域" } },
+                    { attrs: { label: "服务开始" } },
                     [
-                      _c(
-                        "el-select",
-                        {
-                          attrs: { placeholder: "活动区域" },
-                          model: {
-                            value: _vm.formInline.name,
-                            callback: function($$v) {
-                              _vm.$set(_vm.formInline, "name", $$v)
-                            },
-                            expression: "formInline.name"
-                          }
-                        },
-                        [
-                          _c("el-option", {
-                            attrs: { label: "区域一", value: "shanghai" }
-                          }),
-                          _vm._v(" "),
-                          _c("el-option", {
-                            attrs: { label: "区域二", value: "beijing" }
-                          })
-                        ],
-                        1
-                      )
+                      _c("el-input", {
+                        attrs: { placeholder: "审批人" },
+                        model: {
+                          value: _vm.formInline.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formInline, "name", $$v)
+                          },
+                          expression: "formInline.name"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "查询记录" } },
+                    [
+                      _c("el-input", {
+                        attrs: { placeholder: "审批人" },
+                        model: {
+                          value: _vm.formInline.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formInline, "name", $$v)
+                          },
+                          expression: "formInline.name"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-row",
+                [
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "联系人" } },
+                    [
+                      _c("el-input", {
+                        attrs: { placeholder: "审批人" },
+                        model: {
+                          value: _vm.formInline.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formInline, "name", $$v)
+                          },
+                          expression: "formInline.name"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "服务到期" } },
+                    [
+                      _c("el-input", {
+                        attrs: { placeholder: "审批人" },
+                        model: {
+                          value: _vm.formInline.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formInline, "name", $$v)
+                          },
+                          expression: "formInline.name"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "服务到期" } },
+                    [
+                      _c("el-input", {
+                        attrs: { placeholder: "审批人" },
+                        model: {
+                          value: _vm.formInline.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formInline, "name", $$v)
+                          },
+                          expression: "formInline.name"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-row",
+                [
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "手机" } },
+                    [
+                      _c("el-input", {
+                        attrs: { placeholder: "审批人" },
+                        model: {
+                          value: _vm.formInline.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formInline, "name", $$v)
+                          },
+                          expression: "formInline.name"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "授权时间" } },
+                    [
+                      _c("el-input", {
+                        attrs: { placeholder: "审批人" },
+                        model: {
+                          value: _vm.formInline.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formInline, "name", $$v)
+                          },
+                          expression: "formInline.name"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "授权次数" } },
+                    [
+                      _c("el-input", {
+                        attrs: { placeholder: "审批人" },
+                        model: {
+                          value: _vm.formInline.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formInline, "name", $$v)
+                          },
+                          expression: "formInline.name"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-row",
+                [
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "电话" } },
+                    [
+                      _c("el-input", {
+                        attrs: { placeholder: "审批人" },
+                        model: {
+                          value: _vm.formInline.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formInline, "name", $$v)
+                          },
+                          expression: "formInline.name"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "授权key" } },
+                    [
+                      _c("el-input", {
+                        attrs: { placeholder: "审批人" },
+                        model: {
+                          value: _vm.formInline.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formInline, "name", $$v)
+                          },
+                          expression: "formInline.name"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "查询记录" } },
+                    [
+                      _c("el-input", {
+                        attrs: { placeholder: "审批人" },
+                        model: {
+                          value: _vm.formInline.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formInline, "name", $$v)
+                          },
+                          expression: "formInline.name"
+                        }
+                      })
                     ],
                     1
                   )

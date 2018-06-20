@@ -28,27 +28,60 @@
   <Page></Page>
 
   <el-dialog title="增加商户" :visible.sync="dialogFormVisible">
-    <el-form :inline="true" :model="formInline" class="demo-form-inline">
+    <el-form :inline="true" :model="formInline" class="demo-form-inline" label-width="70px">
       <el-row>
-        <el-form-item label="审批人">
+        <el-form-item label="商户名称">
           <el-input v-model="formInline.name" placeholder="审批人"></el-input>
         </el-form-item>
-        <el-form-item label="活动区域">
-          <el-select v-model="formInline.name" placeholder="活动区域">
-            <el-option label="区域一" value="shanghai"></el-option>
-            <el-option label="区域二" value="beijing"></el-option>
-          </el-select>
+        <el-form-item label="技术顾问">
+          <el-input v-model="formInline.name" placeholder="审批人"></el-input>
+        </el-form-item>
+        <el-form-item label="登入次数">
+          <el-input v-model="formInline.name" placeholder="审批人"></el-input>
         </el-form-item>
       </el-row>
       <el-row>
-        <el-form-item label="审批人">
+        <el-form-item label="公司类型">
           <el-input v-model="formInline.name" placeholder="审批人"></el-input>
         </el-form-item>
-        <el-form-item label="活动区域">
-          <el-select v-model="formInline.name" placeholder="活动区域">
-            <el-option label="区域一" value="shanghai"></el-option>
-            <el-option label="区域二" value="beijing"></el-option>
-          </el-select>
+        <el-form-item label="服务开始">
+          <el-input v-model="formInline.name" placeholder="审批人"></el-input>
+        </el-form-item>
+        <el-form-item label="查询记录">
+          <el-input v-model="formInline.name" placeholder="审批人"></el-input>
+        </el-form-item>
+      </el-row>
+      <el-row>
+        <el-form-item label="联系人">
+          <el-input v-model="formInline.name" placeholder="审批人"></el-input>
+        </el-form-item>
+        <el-form-item label="服务到期">
+          <el-input v-model="formInline.name" placeholder="审批人"></el-input>
+        </el-form-item>
+        <el-form-item label="服务到期">
+          <el-input v-model="formInline.name" placeholder="审批人"></el-input>
+        </el-form-item>
+      </el-row>
+      <el-row>
+        <el-form-item label="手机">
+          <el-input v-model="formInline.name" placeholder="审批人"></el-input>
+        </el-form-item>
+        <el-form-item label="授权时间">
+          <el-input v-model="formInline.name" placeholder="审批人"></el-input>
+        </el-form-item>
+        <el-form-item label="授权次数">
+          <el-input v-model="formInline.name" placeholder="审批人"></el-input>
+        </el-form-item>
+      </el-row>
+      <el-row>
+        <el-form-item label="电话">
+          <el-input v-model="formInline.name" placeholder="审批人"></el-input>
+        </el-form-item>
+        <el-form-item label="授权key">
+          <el-input v-model="formInline.name" placeholder="审批人"></el-input>
+        </el-form-item>
+        <el-form-item label="查询记录">
+          <el-input v-model="formInline.name" placeholder="审批人"></el-input>
         </el-form-item>
       </el-row>
       <el-form-item>
