@@ -21909,6 +21909,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -21946,7 +21949,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     delMerchants: function delMerchants() {},
     delayMerchants: function delayMerchants() {
       // 
-    }
+    },
+    onSubmit: function onSubmit() {}
   }
 
 });
@@ -22165,7 +22169,13 @@ var render = function() {
       _c(
         "el-dialog",
         {
-          attrs: { title: "增加商户", visible: _vm.dialogFormVisible },
+          attrs: {
+            title: "增加商户",
+            visible: _vm.dialogFormVisible,
+            width: "70%",
+            "close-on-click-modal": false,
+            "show-close": false
+          },
           on: {
             "update:visible": function($event) {
               _vm.dialogFormVisible = $event
@@ -22485,12 +22495,35 @@ var render = function() {
               ),
               _vm._v(" "),
               _c(
-                "el-form-item",
+                "el-row",
+                { staticStyle: { "text-align": "center" } },
                 [
                   _c(
-                    "el-button",
-                    { attrs: { type: "primary" }, on: { click: _vm.onSubmit } },
-                    [_vm._v("查询")]
+                    "el-form-item",
+                    [
+                      _c(
+                        "el-button",
+                        {
+                          attrs: { type: "primary", size: "medium" },
+                          on: { click: _vm.onSubmit }
+                        },
+                        [_vm._v("提交")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-button",
+                        {
+                          attrs: { size: "medium" },
+                          on: {
+                            click: function($event) {
+                              _vm.dialogFormVisible = false
+                            }
+                          }
+                        },
+                        [_vm._v("取消")]
+                      )
+                    ],
+                    1
                   )
                 ],
                 1

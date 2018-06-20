@@ -27,7 +27,7 @@
   </el-table>
   <Page></Page>
 
-  <el-dialog title="增加商户" :visible.sync="dialogFormVisible">
+  <el-dialog title="增加商户" :visible.sync="dialogFormVisible" width="70%" :close-on-click-modal="false" :show-close="false">
     <el-form :inline="true" :model="formInline" class="demo-form-inline" label-width="70px">
       <el-row>
         <el-form-item label="商户名称">
@@ -84,9 +84,12 @@
           <el-input v-model="formInline.name" placeholder="审批人"></el-input>
         </el-form-item>
       </el-row>
+      <el-row style="text-align:center;">
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">查询</el-button>
+        <el-button type="primary" size="medium" @click="onSubmit">提交</el-button>
+        <el-button size="medium" @click="dialogFormVisible = false">取消</el-button>
       </el-form-item>
+      </el-row>
     </el-form>
   </el-dialog>
   </div>
@@ -143,7 +146,8 @@ import Page from "./../../components/Page.vue"
       },
       delayMerchants(){
         // 
-      }
+      },
+      onSubmit(){}
     }
     
   }
