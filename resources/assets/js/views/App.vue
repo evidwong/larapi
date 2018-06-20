@@ -7,7 +7,13 @@
             </div>
         </div>
         <el-footer>
-            footer
+                <el-col :span="10" style="text-align: right;padding-right:15px;">
+                    <img src="/images/logo.png" alt="">
+                </el-col>
+                <el-col :span="10">
+                    <p class="copy">Copyright © 2018.百思易科技.All Rights Reserved.</p>
+                    <p class="beian">ICP备案号：粤ICP备123456号</p>
+                </el-col>
         </el-footer>
     </el-container>
 </template>
@@ -31,7 +37,6 @@
         width: 100%;
         /* Set the fixed height of the footer here */
         height: 60px;
-        background-color: #000;
     }
 
     footer .container {
@@ -70,5 +75,9 @@
     .main-container{
         width: auto;
         margin: 0 5%;
+    }
+    footer img {
+        margin-top: 1.5%;
+        width: 130px;
     }
 </style>

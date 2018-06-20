@@ -21801,7 +21801,7 @@ exports = module.exports = __webpack_require__(9)(false);
 
 
 // module
-exports.push([module.i, "\n.btn-groups{\n  padding: 15px;\n}\n", ""]);
+exports.push([module.i, "\n.btn-groups {\n    padding: 15px;\n}\n", ""]);
 
 // exports
 
@@ -21912,46 +21912,49 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    Page: __WEBPACK_IMPORTED_MODULE_0__components_Page_vue___default.a
-  },
-  name: "merchants",
-  data: function data() {
-    return {
-      currentPage: 1,
-      tableData: [{ date: '2016-05-03', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' }, { date: '2016-05-02', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' }, { date: '2016-05-04', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' }, { date: '2016-05-01', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' }, { date: '2016-05-08', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' }, { date: '2016-05-06', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' }, { date: '2016-05-07', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' }],
-      dialogFormVisible: false,
-      formInline: {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: ''
-      },
-      formLabelWidth: '120px'
-    };
-  },
+    components: {
+        Page: __WEBPACK_IMPORTED_MODULE_0__components_Page_vue___default.a
+    },
+    name: "merchants",
+    data: function data() {
+        return {
+            currentPage: 1,
+            tableData: [{ date: '2016-05-03', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' }, { date: '2016-05-02', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' }, { date: '2016-05-04', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' }, { date: '2016-05-01', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' }, { date: '2016-05-08', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' }, { date: '2016-05-06', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' }, { date: '2016-05-07', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' }],
+            dialogFormVisible: false,
+            formInline: {
+                name: '',
+                region: '',
+                date1: '',
+                date2: '',
+                delivery: false,
+                type: [],
+                resource: '',
+                desc: ''
+            },
+            formLabelWidth: '120px'
+        };
+    },
 
-  computed: {},
-  methods: {
-    handleSizeChange: function handleSizeChange(val) {},
-    handleCurrentChange: function handleCurrentChange(val) {},
-    addMerchants: function addMerchants() {
-      console.log(__WEBPACK_IMPORTED_MODULE_0__components_Page_vue___default.a.data().currentPage);
-    },
-    editMerchants: function editMerchants() {},
-    delMerchants: function delMerchants() {},
-    delayMerchants: function delayMerchants() {
-      // 
-    },
-    onSubmit: function onSubmit() {}
-  }
+    computed: {},
+    methods: {
+        handleSizeChange: function handleSizeChange(val) {},
+        handleCurrentChange: function handleCurrentChange(val) {},
+        addMerchants: function addMerchants() {
+            console.log(__WEBPACK_IMPORTED_MODULE_0__components_Page_vue___default.a.data().currentPage);
+        },
+        editMerchants: function editMerchants() {},
+        delMerchants: function delMerchants() {},
+        delayMerchants: function delayMerchants() {
+            //
+        },
+        onSubmit: function onSubmit() {}
+    }
 
 });
 
@@ -22128,7 +22131,7 @@ var render = function() {
         "el-table",
         {
           staticStyle: { width: "100%" },
-          attrs: { data: _vm.tableData, height: "500", border: "" }
+          attrs: { data: _vm.tableData, height: "auto", border: "" }
         },
         [
           _c("el-table-column", { attrs: { label: "ID" } }),
@@ -22164,7 +22167,7 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("Page"),
+      _c("el-row", [_c("Page")], 1),
       _vm._v(" "),
       _c(
         "el-dialog",
@@ -22173,8 +22176,7 @@ var render = function() {
             title: "增加商户",
             visible: _vm.dialogFormVisible,
             width: "70%",
-            "close-on-click-modal": false,
-            "show-close": false
+            "close-on-click-modal": false
           },
           on: {
             "update:visible": function($event) {
@@ -66021,7 +66023,7 @@ exports = module.exports = __webpack_require__(9)(false);
 
 
 // module
-exports.push([module.i, "\nfooter[data-v-7cca96b8] {\n    position: absolute;\n    bottom: 0;\n    width: 100%;\n    /* Set the fixed height of the footer here */\n    height: 60px;\n    background-color: #000;\n}\nfooter .container[data-v-7cca96b8] {\n    padding-right: 15px;\n    padding-left: 15px;\n}\nfooter .container p[data-v-7cca96b8] {\n    margin: 19px 0;\n    color: #c1c1c1;\n}\nfooter .container p a[data-v-7cca96b8] {\n    color: inherit;\n}\n\n/*@media (min-width: 768px) {\n    .container {\n        width: 750px\n    }\n}\n\n@media (min-width: 992px) {\n    .container {\n        width: 970px\n    }\n}\n\n@media (min-width: 1200px) {\n    .container {\n        width: 1170px\n    }\n}*/\n.main-container[data-v-7cca96b8]{\n    width: auto;\n    margin: 0 5%;\n}\n", ""]);
+exports.push([module.i, "\nfooter[data-v-7cca96b8] {\n    position: absolute;\n    bottom: 0;\n    width: 100%;\n    /* Set the fixed height of the footer here */\n    height: 60px;\n}\nfooter .container[data-v-7cca96b8] {\n    padding-right: 15px;\n    padding-left: 15px;\n}\nfooter .container p[data-v-7cca96b8] {\n    margin: 19px 0;\n    color: #c1c1c1;\n}\nfooter .container p a[data-v-7cca96b8] {\n    color: inherit;\n}\n\n/*@media (min-width: 768px) {\n    .container {\n        width: 750px\n    }\n}\n\n@media (min-width: 992px) {\n    .container {\n        width: 970px\n    }\n}\n\n@media (min-width: 1200px) {\n    .container {\n        width: 1170px\n    }\n}*/\n.main-container[data-v-7cca96b8]{\n    width: auto;\n    margin: 0 5%;\n}\nfooter img[data-v-7cca96b8] {\n    margin-top: 1.5%;\n    width: 130px;\n}\n", ""]);
 
 // exports
 
@@ -66034,6 +66036,12 @@ exports.push([module.i, "\nfooter[data-v-7cca96b8] {\n    position: absolute;\n 
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Nav_vue__ = __webpack_require__(218);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Nav_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_Nav_vue__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -66434,7 +66442,30 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("el-footer", [_vm._v("\n        footer\n    ")])
+      _c(
+        "el-footer",
+        [
+          _c(
+            "el-col",
+            {
+              staticStyle: { "text-align": "right", "padding-right": "15px" },
+              attrs: { span: 10 }
+            },
+            [_c("img", { attrs: { src: "/images/logo.png", alt: "" } })]
+          ),
+          _vm._v(" "),
+          _c("el-col", { attrs: { span: 10 } }, [
+            _c("p", { staticClass: "copy" }, [
+              _vm._v("Copyright © 2018.百思易科技.All Rights Reserved.")
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "beian" }, [
+              _vm._v("ICP备案号：粤ICP备123456号")
+            ])
+          ])
+        ],
+        1
+      )
     ],
     1
   )
