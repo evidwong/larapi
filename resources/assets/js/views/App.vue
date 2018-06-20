@@ -1,7 +1,7 @@
 <template>
     <el-container>
         <Nav></Nav>
-        <div class="container">
+        <div class="container main-container">
             <div class="panel panel-default">
                 <router-view></router-view>
             </div>
@@ -15,11 +15,11 @@
 <script>
     import Nav from "./../components/Nav.vue"//引入components中的Nav组件
     export default {
-        components:{
+        components: {
             Nav,
         },
-        name:"app",
-        loading:true
+        name: "app",
+        loading: true
     }
 </script>
 
@@ -28,25 +28,47 @@
     footer {
         position: absolute;
         bottom: 0;
-        width: 100% ;
+        width: 100%;
         /* Set the fixed height of the footer here */
         height: 60px;
         background-color: #000;
     }
+
     footer .container {
         padding-right: 15px;
         padding-left: 15px;
 
-
     }
+
     footer .container p {
         margin: 19px 0;
         color: #c1c1c1;
 
-
     }
+
     footer .container p a {
         color: inherit;
     }
 
+    /*@media (min-width: 768px) {
+        .container {
+            width: 750px
+        }
+    }
+
+    @media (min-width: 992px) {
+        .container {
+            width: 970px
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .container {
+            width: 1170px
+        }
+    }*/
+    .main-container{
+        width: auto;
+        margin: 0 5%;
+    }
 </style>

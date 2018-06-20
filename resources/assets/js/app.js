@@ -1,36 +1,47 @@
 import Vue from 'vue' //引入vue
-import VueRouter from 'vue-router'//引入vue-router
+import router from './router/router.js'
+import Vuex from 'vuex';
+import axios from 'axios';
 import Element from 'element-ui';
-Vue.use(VueRouter);
-Vue.use(Element);
+import store from './store/store.js';
 
 import App from './views/App' //加载views文件夹下的App组件
-const router = new VueRouter({//定义路由
-    routes: [
-        {
-            path: '/',
-            name: '首页',
-            component: require('./views/Home'),
-        },
-        {
-            path: '/about',
-            name: '关于我们',
-            component: require('./views/About'),
-        },
-        {
-            path: '/login',
-            name: '系统登录',
-            component: require('./views/login'),
-        },
-        {
-            path: '/merchants',
-            name: '商户管理',
-            component: require('./views/admin/merchants'),
-        },
-    ],
+Vue.use(Vuex);
+Vue.use(Element);
+
+
+axios.defaults.baseURL = 'http://larapi.test';
+axios.interceptors.request.use(function (config) {
+    if (localStorage.token) {
+        config.headers.Authorization = `Bearer ${localStorage.token}`;
+    }
+    return config;
+}, function (err) {
+    return Promise.reject(err);
+});
+router.beforeEach((to, from, next) => {
+    if (to.path === '/login') {
+        sessionStorage.removeItem('userInfo')
+    }
+    // 这里的meta就是我们刚刚在路由里面配置的meta
+    if (to.meta.requireAuth) {
+        let user = JSON.parse(sessionStorage.getItem('userInfo'))
+        // 下面这个判断是自行实现到底是否有没有登录
+        if (!user) {
+            next({
+                path: '/login',
+                query: {redirect: to.fullPath}
+            })
+        } else {
+            next()
+        }
+    } else {
+        next()
+    }
 });
 const app = new Vue({//实例化Vue
     el: '#app',
-    components: { App },
+    components: {App},
     router,
+    store
 });
