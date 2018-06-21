@@ -60,6 +60,30 @@ export default new Router({//定义路由
             },
         },
         {
+            path: '/globalset/brand',
+            name: '品牌设置',
+            component: require('../views/admin/globalset/brand'),
+            meta : {
+                requireAuth: true,
+            },
+        },
+        {
+            path: '/globalset/vin',
+            name: '车架号设置',
+            component: require('../views/admin/globalset/vin'),
+            meta : {
+                requireAuth: true,
+            },
+        },
+        {
+            path: '/globalset/companytype',
+            name: '公司类型设置',
+            component: require('../views/admin/globalset/companytype'),
+            meta : {
+                requireAuth: true,
+            },
+        },
+        {
             path: '/docs',
             name: '接口文档',
             component: require('../views/docs'),

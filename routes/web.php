@@ -13,3 +13,4 @@
 Route::get('/', 'IndexController@index')->name('index');
 
 Route::post('login', 'LoginController@login');
+Route::post('getMerchants', 'MerchantsController@getMerchants');

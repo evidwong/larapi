@@ -5,10 +5,13 @@ import axios from 'axios';
 import Element from 'element-ui';
 import store from './store/store.js';
 
+
 import App from './views/App' //加载views文件夹下的App组件
 Vue.use(Vuex);
 Vue.use(Element);
 
+// 去掉开发模式信息
+Vue.config.productionTip = false;
 
 axios.defaults.baseURL = 'http://larapi.test';
 axios.interceptors.request.use(function (config) {

@@ -33,6 +33,12 @@
                         <el-menu-item index="/promise/nodes">权限节点</el-menu-item>
                         <el-menu-item index="/promise/users">用户管理</el-menu-item>
                     </el-submenu>
+                    <el-submenu index="/globalset">
+                        <template slot="title">通用设置</template>
+                        <el-menu-item index="/globalset/brand">品牌设置</el-menu-item>
+                        <el-menu-item index="/globalset/vin">车架号设置</el-menu-item>
+                        <el-menu-item index="/globalset/companytype">公司类型设置</el-menu-item>
+                    </el-submenu>
                     <el-menu-item index="/actionlog">操作日志</el-menu-item>
                     <el-menu-item index="/docs">
                         <router-link to="/docs">接口文档</router-link>

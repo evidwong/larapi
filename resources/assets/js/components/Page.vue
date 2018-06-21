@@ -3,10 +3,10 @@
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       :current-page="currentPage"
-      :page-sizes="[100, 200, 300, 400]"
-      :page-size="100"
+      :page-sizes="[10, 20, 30, 50,100,200]"
+      :page-size="currentPageSize"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="400">
+      :total="totalPage">
     </el-pagination>
 </template>
 <script>
@@ -14,13 +14,16 @@
     name:"Page",
     data() { 
       return {
-        currentPage:1,
       }
     },
+      props: ['totalPage','currentPage','currentPageSize'],
     methods: {
       handleSizeChange(val) {
+          console.log('------------------- page size: '+val)
+          this.$emit('onRefresh',{currentPageSize:val,currentPage:this.currentPage})
       },
       handleCurrentChange(val) {
+          this.$emit('onRefresh',{currentPage:val,currentPageSize:this.currentPageSize})
       }
     }
     

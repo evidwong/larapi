@@ -10,13 +10,16 @@ class MerchantsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+//        $this->middleware('auth');
     }
 
-    public function getList(Merchant $merchant,User $user)
+    public function getMerchants(Request $request)
     {
-        $this->authorize('getList');
-        $merchants = $merchant->paginate(10);
+//        var_dump($request->all());
+
+        $pageSize=$request->currentPageSize;
+        $page=$request->currentPage;
+        $merchants = Merchant::offset(($page-1)*$pageSize)->limit($pageSize)->get()->toArray();
         return response()->json(['code' => 200, 'merchants' => $merchants]);
     }
 }

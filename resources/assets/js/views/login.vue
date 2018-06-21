@@ -25,8 +25,8 @@
             return {
                 logining: false,
                 ruleForm: {
-                    email: sessionStorage.email||'',
-                    passcode: sessionStorage.passcode||''
+                    email: localStorage.email||'',
+                    passcode: localStorage.passcode||''
                 },
                 rules: {
                     email: [
@@ -63,8 +63,8 @@
                                     type: 'success'
                                 });
                                 if (this.checked){
-                                    sessionStorage.email=this.ruleForm.email;
-                                    sessionStorage.passcode=this.ruleForm.passcode;
+                                    localStorage.email=this.ruleForm.email;
+                                    localStorage.passcode=this.ruleForm.passcode;
                                 }
                                 sessionStorage.setItem('userInfo', JSON.stringify(user));
                                 this.$store.dispatch('login');
