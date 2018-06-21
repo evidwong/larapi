@@ -21831,7 +21831,7 @@ exports = module.exports = __webpack_require__(9)(false);
 
 
 // module
-exports.push([module.i, "\n.btn-groups {\n    padding: 15px;\n}\n.el-form-item{\n    margin-bottom:10px;\n}\n.large_item{\n    width:100%;\n}\n.large_item .el-form-item__content{\n    width:80%;\n}\n.large_item .el-form-item__content .el-select,.large_item .el-form-item__content .el-input,.large_item .el-form-item__content .el-cascader{\n    width:100%;\n}\n.el-date-editor.el-input, .el-date-editor.el-input__inner{\n    width:auto;\n}\n.el-input--prefix .el-input__inner{\n    text-indent: 30px;\n    /*padding-left: 0;*/\n}\n.el-input--suffix .el-input__inner{\n    padding-right: 0;\n}\n.medium_item{\n    width: 60%;\n}\n.medium_item .el-form-item__content{\n    width: 60%;\n}\n", ""]);
+exports.push([module.i, "\n.btn-groups {\n    padding: 15px;\n}\n.el-form-item {\n    margin-bottom: 10px;\n}\n.large_item {\n    width: 100%;\n}\n.large_item .el-form-item__content {\n    width: 80%;\n}\n.large_item .el-form-item__content .el-select, .large_item .el-form-item__content .el-input, .large_item .el-form-item__content .el-cascader {\n    width: 100%;\n}\n.el-date-editor.el-input, .el-date-editor.el-input__inner {\n    width: auto;\n}\n.el-input--prefix .el-input__inner {\n    text-indent: 30px;\n    /*padding-left: 0;*/\n}\n.el-input--suffix .el-input__inner {\n    padding-right: 0;\n}\n.medium_item {\n    width: 60%;\n}\n.medium_item .el-form-item__content {\n    width: 60%;\n}\n", ""]);
 
 // exports
 
@@ -22006,8 +22006,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -22020,10 +22018,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     name: "merchants",
     data: function data() {
         return {
+            loading: true,
             currentPage: 1,
             totalPage: 0,
+            currentPageSize: 10,
             tableData: [],
             dialogFormVisible: false,
+            tempRow: {},
             formInline: {
                 id: '',
                 name: '',
@@ -22032,7 +22033,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 hand_phone: '',
                 tech_ad: '',
                 tel_phone: '',
-                city: '',
+                city: [],
                 address: '',
                 login_times: '',
                 query_times: '',
@@ -22048,9 +22049,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 pics: ''
             },
             formLabelWidth: '120px',
-            options: __WEBPACK_IMPORTED_MODULE_2__pca_code_json___default.a,
-            service_start: '',
-            service_expire: ''
+            options: __WEBPACK_IMPORTED_MODULE_2__pca_code_json___default.a
         };
     },
 
@@ -22058,12 +22057,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var _this = this;
 
-        var that = this;
-        var params = { currentPage: 1, currentPageSize: 10 };
+        var params = { currentPage: this.currentPage, currentPageSize: this.currentPageSize };
         Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["a" /* getMerchants */])(params).then(function (res) {
-            _this.totalPage = res.merchants.length;
-            _this.currentPage = 1;
-            that.tableData = res.merchants;
+            _this.totalPage = res.total;
+            // this.currentPage = this.currentPage;
+            _this.tableData = res.merchants;
+            _this.loading = false;
         });
     },
 
@@ -22073,7 +22072,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         addMerchants: function addMerchants() {
             console.log(__WEBPACK_IMPORTED_MODULE_1__components_Page_vue___default.a.data().currentPage);
         },
-        editMerchants: function editMerchants() {},
+        editMerchants: function editMerchants() {
+            if (this.tempRow) {
+                this.tempRow.city = this.tempRow.city == '' ? [] : this.tempRow.city.split(',');
+                this.tempRow.auth_time = [];
+                // console.log([this.tempRow.auth_start_time,this.tempRow.auth_end_time]);
+                this.tempRow.auth_time.push(this.tempRow.auth_start_time);
+                this.tempRow.auth_time.push(this.tempRow.auth_end_time);
+                this.formInline = this.tempRow;
+
+                this.dialogFormVisible = true;
+            }
+        },
         delMerchants: function delMerchants() {},
         delayMerchants: function delayMerchants() {
             //
@@ -22084,13 +22094,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         loadData: function loadData(params) {
             var _this2 = this;
 
-            console.log(2222222);
+            this.loading = true;
             Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["a" /* getMerchants */])(params).then(function (res) {
-                _this2.totalPage = res.merchants.length;
+                _this2.totalPage = res.total;
                 _this2.currentPage = params.currentPage;
                 _this2.currentPageSize = params.currentPageSize;
-                that.tableData = res.merchants;
+                _this2.tableData = res.merchants;
+                _this2.loading = false;
             });
+        },
+        clickTableRow: function clickTableRow(row, event, column) {
+            this.tempRow = row;
+        },
+        auth_time_format: function auth_time_format(row, column, cellValue, index) {
+            return row.auth_start_time + ' - ' + row.auth_end_time;
         }
     }
 
@@ -22162,21 +22179,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Page",
-  data: function data() {
-    return {};
-  },
-
-  props: ['totalPage', 'currentPage', 'currentPageSize'],
-  methods: {
-    handleSizeChange: function handleSizeChange(val) {
-      console.log('------------------- page size: ' + val);
-      this.$emit('onRefresh', { currentPageSize: val, currentPage: this.currentPage });
+    name: "Page",
+    data: function data() {
+        return {};
     },
-    handleCurrentChange: function handleCurrentChange(val) {
-      this.$emit('onRefresh', { currentPage: val, currentPageSize: this.currentPageSize });
+
+    props: ['totalPage', 'currentPage', 'currentPageSize'],
+    methods: {
+        handleSizeChange: function handleSizeChange(val) {
+            var params = { currentPageSize: val, currentPage: this.currentPage };
+            this.$emit('onRefresh', params);
+        },
+        handleCurrentChange: function handleCurrentChange(val) {
+            var params = { currentPage: val, currentPageSize: this.currentPageSize };
+            this.$emit('onRefresh', params);
+        }
     }
-  }
 
 });
 
@@ -22228,6 +22246,16 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    {
+      directives: [
+        {
+          name: "loading",
+          rawName: "v-loading",
+          value: _vm.loading,
+          expression: "loading"
+        }
+      ]
+    },
     [
       _c(
         "div",
@@ -22279,66 +22307,144 @@ var render = function() {
         "el-table",
         {
           staticStyle: { width: "100%" },
-          attrs: { data: _vm.tableData, height: "auto", border: "" },
-          on: {
-            onRefresh: function($event) {
-              _vm.loadData(_vm.$1)
-            }
-          }
+          attrs: { data: _vm.tableData, border: "", height: "500px" },
+          on: { "row-click": _vm.clickTableRow }
         },
         [
-          _c("el-table-column", { attrs: { prop: "id", label: "ID" } }),
-          _vm._v(" "),
-          _c("el-table-column", { attrs: { prop: "name", label: "商户名称" } }),
-          _vm._v(" "),
-          _c("el-table-column", { attrs: { prop: "type", label: "公司类型" } }),
-          _vm._v(" "),
           _c("el-table-column", {
-            attrs: { prop: "contact", label: "联系人" }
+            attrs: {
+              prop: "id",
+              label: "ID",
+              "show-overflow-tooltip": "true",
+              width: "50px"
+            }
           }),
           _vm._v(" "),
           _c("el-table-column", {
-            attrs: { prop: "hand_phone", label: "手机" }
+            attrs: {
+              prop: "name",
+              label: "商户名称",
+              "show-overflow-tooltip": "true",
+              width: "120px"
+            }
           }),
           _vm._v(" "),
           _c("el-table-column", {
-            attrs: { prop: "tech_ad", label: "技术顾问" }
+            attrs: {
+              prop: "type",
+              label: "公司类型",
+              "show-overflow-tooltip": "true",
+              width: "120px"
+            }
           }),
           _vm._v(" "),
           _c("el-table-column", {
-            attrs: { prop: "service_start", label: "服务开始" }
+            attrs: {
+              prop: "contact",
+              label: "联系人",
+              "show-overflow-tooltip": "true",
+              width: "120px"
+            }
           }),
           _vm._v(" "),
           _c("el-table-column", {
-            attrs: { prop: "service_expire", label: "服务到期" }
+            attrs: {
+              prop: "hand_phone",
+              label: "手机",
+              "show-overflow-tooltip": "true",
+              width: "120px"
+            }
           }),
           _vm._v(" "),
           _c("el-table-column", {
-            attrs: { prop: "created_at", label: "创建日期" }
+            attrs: {
+              prop: "tech_ad",
+              label: "技术顾问",
+              "show-overflow-tooltip": "true",
+              width: "120px"
+            }
           }),
           _vm._v(" "),
           _c("el-table-column", {
-            attrs: { prop: "auth_brand", label: "品牌" }
+            attrs: {
+              prop: "service_start",
+              label: "服务开始",
+              "show-overflow-tooltip": "true",
+              width: "120px"
+            }
           }),
           _vm._v(" "),
           _c("el-table-column", {
-            attrs: { prop: "auth_ip", label: "授权IP" }
+            attrs: {
+              prop: "service_expire",
+              label: "服务到期",
+              "show-overflow-tooltip": "true",
+              width: "120px"
+            }
           }),
           _vm._v(" "),
           _c("el-table-column", {
-            attrs: { prop: "auth_time_start", label: "授权时间" }
+            attrs: {
+              prop: "created_at",
+              label: "创建日期",
+              "show-overflow-tooltip": "true",
+              width: "120px"
+            }
           }),
           _vm._v(" "),
           _c("el-table-column", {
-            attrs: { prop: "auth_speed", label: "授权速度" }
+            attrs: {
+              prop: "auth_brand",
+              label: "品牌",
+              "show-overflow-tooltip": "true",
+              width: "120px"
+            }
           }),
           _vm._v(" "),
           _c("el-table-column", {
-            attrs: { prop: "login_times", label: "登入次数" }
+            attrs: {
+              prop: "auth_ip",
+              label: "授权IP",
+              "show-overflow-tooltip": "true",
+              width: "120px"
+            }
           }),
           _vm._v(" "),
           _c("el-table-column", {
-            attrs: { prop: "query_times", label: "查询记录" }
+            attrs: {
+              prop: "auth_time",
+              formatter: _vm.auth_time_format,
+              label: "授权时间",
+              "show-overflow-tooltip": "true",
+              width: "200px"
+            }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: {
+              prop: "auth_speed",
+              label: "授权速度",
+              "show-overflow-tooltip": "true",
+              width: "120px"
+            }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: {
+              prop: "login_times",
+              label: "登入次数",
+              "show-overflow-tooltip": "true",
+              width: "120px"
+            }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: {
+              prop: "query_times",
+              label: "查询记录",
+              "show-overflow-tooltip": "true",
+              width: "120px"
+            }
           })
         ],
         1
@@ -22352,8 +22458,10 @@ var render = function() {
               _c("Page", {
                 attrs: {
                   totalPage: _vm.totalPage,
-                  currentPage: _vm.currentPage
-                }
+                  currentPage: _vm.currentPage,
+                  currentPageSize: _vm.currentPageSize
+                },
+                on: { onRefresh: _vm.loadData }
               })
             ],
             1
@@ -22366,7 +22474,8 @@ var render = function() {
           attrs: {
             title: "增加商户",
             visible: _vm.dialogFormVisible,
-            "close-on-click-modal": false
+            "close-on-click-modal": false,
+            width: "70%"
           },
           on: {
             "update:visible": function($event) {
@@ -22394,7 +22503,7 @@ var render = function() {
                     { attrs: { label: "商户名称" } },
                     [
                       _c("el-input", {
-                        attrs: { placeholder: "审批人" },
+                        attrs: { placeholder: "商户名称" },
                         model: {
                           value: _vm.formInline.name,
                           callback: function($$v) {
@@ -22412,7 +22521,7 @@ var render = function() {
                     { attrs: { label: "技术顾问" } },
                     [
                       _c("el-input", {
-                        attrs: { placeholder: "审批人" },
+                        attrs: { placeholder: "技术顾问" },
                         model: {
                           value: _vm.formInline.tech_ad,
                           callback: function($$v) {
@@ -22430,7 +22539,7 @@ var render = function() {
                     { attrs: { label: "登入次数" } },
                     [
                       _c("el-input", {
-                        attrs: { placeholder: "审批人" },
+                        attrs: { placeholder: "登入次数" },
                         model: {
                           value: _vm.formInline.login_times,
                           callback: function($$v) {
@@ -22454,7 +22563,7 @@ var render = function() {
                     { attrs: { label: "公司类型" } },
                     [
                       _c("el-input", {
-                        attrs: { placeholder: "审批人" },
+                        attrs: { placeholder: "公司类型" },
                         model: {
                           value: _vm.formInline.name,
                           callback: function($$v) {
@@ -22478,11 +22587,11 @@ var render = function() {
                           placeholder: "服务开始日期"
                         },
                         model: {
-                          value: _vm.service_start,
+                          value: _vm.formInline.service_start,
                           callback: function($$v) {
-                            _vm.service_start = $$v
+                            _vm.$set(_vm.formInline, "service_start", $$v)
                           },
-                          expression: "service_start"
+                          expression: "formInline.service_start"
                         }
                       })
                     ],
@@ -22542,11 +22651,11 @@ var render = function() {
                           placeholder: "服务到期日期"
                         },
                         model: {
-                          value: _vm.service_expire,
+                          value: _vm.formInline.service_expire,
                           callback: function($$v) {
-                            _vm.service_expire = $$v
+                            _vm.$set(_vm.formInline, "service_expire", $$v)
                           },
-                          expression: "service_expire"
+                          expression: "formInline.service_expire"
                         }
                       })
                     ],
@@ -22676,7 +22785,7 @@ var render = function() {
                     [
                       _c("el-cascader", {
                         attrs: {
-                          placeholder: "",
+                          placeholder: "可输入文字搜索",
                           options: _vm.options,
                           filterable: "",
                           "change-on-select": ""
@@ -22776,17 +22885,11 @@ var render = function() {
                       )
                     ],
                     1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-row",
-                [
+                  ),
+                  _vm._v(" "),
                   _c(
                     "el-form-item",
-                    { attrs: { label: "备注" } },
+                    { staticClass: "large_item", attrs: { label: "备注" } },
                     [
                       _c("el-input", {
                         attrs: { type: "textarea" },
@@ -22800,17 +22903,11 @@ var render = function() {
                       })
                     ],
                     1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-row",
-                [
+                  ),
+                  _vm._v(" "),
                   _c(
                     "el-form-item",
-                    { attrs: { label: "证照" } },
+                    { staticClass: "large_item", attrs: { label: "证照" } },
                     [
                       _c("el-input", {
                         attrs: { placeholder: "审批人" },
@@ -66446,7 +66543,7 @@ exports = module.exports = __webpack_require__(9)(false);
 
 
 // module
-exports.push([module.i, "\nfooter[data-v-7cca96b8] {\n    position: absolute;\n    bottom: 0;\n    width: 100%;\n    /* Set the fixed height of the footer here */\n    height: 60px;\n}\nfooter .container[data-v-7cca96b8] {\n    padding-right: 15px;\n    padding-left: 15px;\n}\nfooter .container p[data-v-7cca96b8] {\n    margin: 19px 0;\n    color: #c1c1c1;\n}\nfooter .container p a[data-v-7cca96b8] {\n    color: inherit;\n}\n\n/*@media (min-width: 768px) {\n    .container {\n        width: 750px\n    }\n}\n\n@media (min-width: 992px) {\n    .container {\n        width: 970px\n    }\n}\n\n@media (min-width: 1200px) {\n    .container {\n        width: 1170px\n    }\n}*/\n.main-container[data-v-7cca96b8]{\n    width: auto;\n    margin: 0 5%;\n}\nfooter img[data-v-7cca96b8] {\n    margin-top: 1.5%;\n    width: 130px;\n}\n", ""]);
+exports.push([module.i, "\nfooter[data-v-7cca96b8] {\n    position: absolute;\n    bottom: 0;\n    width: 100%;\n    /* Set the fixed height of the footer here */\n    height: 60px;\n}\nfooter .container[data-v-7cca96b8] {\n    padding-right: 15px;\n    padding-left: 15px;\n}\nfooter .container p[data-v-7cca96b8] {\n    margin: 19px 0;\n    color: #c1c1c1;\n}\nfooter .container p a[data-v-7cca96b8] {\n    color: inherit;\n}\n.main-container[data-v-7cca96b8]{\n    width: auto;\n    margin: 0 5%;\n}\nfooter img[data-v-7cca96b8] {\n    margin-top: 1.5%;\n    width: 130px;\n}\n[v-cloak][data-v-7cca96b8] {\n    opacity: 0;\n}\n", ""]);
 
 // exports
 
@@ -66459,6 +66556,10 @@ exports.push([module.i, "\nfooter[data-v-7cca96b8] {\n    position: absolute;\n 
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Nav_vue__ = __webpack_require__(222);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Nav_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_Nav_vue__);
+//
+//
+//
+//
 //
 //
 //
@@ -66575,7 +66676,7 @@ exports = module.exports = __webpack_require__(9)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* header */\n.navbar-brand[data-v-b03f2208] {\n    padding: 0;\n}\n.navbar-brand img[data-v-b03f2208] {\n    width: 130px;\n    margin-top: 10px;\n    margin-right: 22px;\n}\n.navbar-static-top[data-v-b03f2208] {\n    border-color: #e7e7e7;\n    background-color: #fff;\n    -webkit-box-shadow: 0px 1px 11px 2px rgba(42, 42, 42, 0.1);\n            box-shadow: 0px 1px 11px 2px rgba(42, 42, 42, 0.1);\n    border-top: 4px solid #00b5ad;\n    margin-bottom: 40px;\n    margin-top: 0px;\n}\na[data-v-b03f2208] {\n    text-decoration: none;\n}\n.el-dropdown-menu__item--divided[data-v-b03f2208]:before, .el-menu[data-v-b03f2208] {\n    background-color: transparent !important;\n}\n.el-menu[data-v-b03f2208] {\n    background-color: transparent !important;\n}\n.el-menu a[data-v-b03f2208] {\n    display: block;\n}\n.el-menu--horizontal[data-v-b03f2208] {\n    border-bottom: none;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* header */\n.navbar-brand[data-v-b03f2208] {\n    padding: 0;\n}\n.navbar-brand img[data-v-b03f2208] {\n    width: 130px;\n    margin-top: 10px;\n    margin-right: 22px;\n}\n.navbar-static-top[data-v-b03f2208] {\n    border-color: #e7e7e7;\n    background-color: #fff;\n    -webkit-box-shadow: 0px 1px 11px 2px rgba(42, 42, 42, 0.1);\n            box-shadow: 0px 1px 11px 2px rgba(42, 42, 42, 0.1);\n    border-top: 4px solid #00b5ad;\n    margin-bottom: 25px;\n    margin-top: 0px;\n}\na[data-v-b03f2208] {\n    text-decoration: none;\n}\n.el-dropdown-menu__item--divided[data-v-b03f2208]:before, .el-menu[data-v-b03f2208] {\n    background-color: transparent !important;\n}\n.el-menu[data-v-b03f2208] {\n    background-color: transparent !important;\n}\n.el-menu a[data-v-b03f2208] {\n    display: block;\n}\n.el-menu--horizontal[data-v-b03f2208] {\n    border-bottom: none;\n}\n", ""]);
 
 // exports
 

@@ -15,7 +15,7 @@ class AddAuthEndAuthStartToMerchants extends Migration
     {
         Schema::table('merchants', function (Blueprint $table) {
             $table->time('auth_start_time')->nullable();
-            $table->time('auth_start_end')->nullable();
+            $table->time('auth_end_time')->nullable();
         });
     }
 
@@ -28,7 +28,7 @@ class AddAuthEndAuthStartToMerchants extends Migration
     {
         Schema::table('merchants', function (Blueprint $table) {
             $table->dropColumn('auth_start_time');
-            $table->dropColumn('auth_start_end');
+            $table->dropColumn('auth_end_time');
         });
     }
 }

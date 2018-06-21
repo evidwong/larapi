@@ -25,11 +25,11 @@ class CreateMerchantsTable extends Migration
             $table->string('address')->nullable();
             $table->integer('login_times')->default(0);
             $table->integer('query_times')->default(0);
-            $table->string('service_start')->nullable();
-            $table->string('service_expire')->nullable();
+            $table->date('service_start')->nullable();
+            $table->date('service_expire')->nullable();
             $table->string('auth_time')->nullable();
             $table->string('auth_speed')->nullable();
-            $table->string('auth_number')->nullable();
+            $table->integer('auth_number')->nullable();
             $table->string('auth_key')->nullable();
             $table->string('auth_ip')->nullable();
             $table->string('auth_brand')->nullable();

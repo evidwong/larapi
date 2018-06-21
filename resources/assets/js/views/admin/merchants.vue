@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-loading="loading">
         <div class="btn-groups">
             <el-row>
                 <el-button @click="dialogFormVisible = true">增加</el-button>
@@ -8,63 +8,63 @@
                 <el-button type="danger" @click="delMerchants">删除</el-button>
             </el-row>
         </div>
-        <el-table :data="tableData" height="auto" border style="width: 100%" v-on:onRefresh="loadData($1)">
-            <el-table-column prop="id" label="ID"/>
-            <el-table-column prop="name" label="商户名称"/>
-            <el-table-column prop="type" label="公司类型"/>
-            <el-table-column prop="contact" label="联系人"/>
-            <el-table-column prop="hand_phone" label="手机"/>
-            <el-table-column prop="tech_ad" label="技术顾问"/>
-            <el-table-column prop="service_start" label="服务开始"/>
-            <el-table-column prop="service_expire" label="服务到期"/>
-            <el-table-column prop="created_at" label="创建日期"></el-table-column>
-            <el-table-column prop="auth_brand" label="品牌"></el-table-column>
-            <el-table-column prop="auth_ip" label="授权IP"></el-table-column>
-            <el-table-column prop="auth_time_start" label="授权时间"></el-table-column>
-            <el-table-column prop="auth_speed" label="授权速度"></el-table-column>
-            <el-table-column prop="login_times" label="登入次数"></el-table-column>
-            <el-table-column prop="query_times" label="查询记录"></el-table-column>
+        <el-table :data="tableData" border style="width: 100%" @row-click="clickTableRow" height="500px">
+            <el-table-column prop="id" label="ID" show-overflow-tooltip="true" width="50px"/>
+            <el-table-column prop="name" label="商户名称" show-overflow-tooltip="true" width="120px"/>
+            <el-table-column prop="type" label="公司类型" show-overflow-tooltip="true" width="120px"/>
+            <el-table-column prop="contact" label="联系人" show-overflow-tooltip="true" width="120px"/>
+            <el-table-column prop="hand_phone" label="手机" show-overflow-tooltip="true" width="120px"/>
+            <el-table-column prop="tech_ad" label="技术顾问" show-overflow-tooltip="true" width="120px"/>
+            <el-table-column prop="service_start" label="服务开始" show-overflow-tooltip="true" width="120px"/>
+            <el-table-column prop="service_expire" label="服务到期" show-overflow-tooltip="true" width="120px"/>
+            <el-table-column prop="created_at" label="创建日期" show-overflow-tooltip="true" width="120px"/>
+            <el-table-column prop="auth_brand" label="品牌" show-overflow-tooltip="true" width="120px"/>
+            <el-table-column prop="auth_ip" label="授权IP" show-overflow-tooltip="true" width="120px"/>
+            <el-table-column prop="auth_time" :formatter="auth_time_format" label="授权时间" show-overflow-tooltip="true" width="200px"/>
+            <el-table-column prop="auth_speed" label="授权速度" show-overflow-tooltip="true" width="120px"/>
+            <el-table-column prop="login_times" label="登入次数" show-overflow-tooltip="true" width="120px"/>
+            <el-table-column prop="query_times" label="查询记录" show-overflow-tooltip="true" width="120px"/>
         </el-table>
+
+
         <el-row style="text-align: center;padding:15px 0;" v-if="tableData.length>0">
-            <Page :totalPage="totalPage" :currentPage="currentPage"></Page>
+            <Page :totalPage="totalPage" :currentPage="currentPage" :currentPageSize="currentPageSize"
+                  @onRefresh="loadData"/>
         </el-row>
 
-        <el-dialog title="增加商户" :visible.sync="dialogFormVisible" :close-on-click-modal="false">
+        <el-dialog title="增加商户" :visible.sync="dialogFormVisible" :close-on-click-modal="false" width="70%">
             <el-form :inline="true" :model="formInline" class="demo-form-inline" label-width="70px">
                 <el-row>
                     <el-form-item label="商户名称">
-                        <el-input v-model="formInline.name" placeholder="审批人"></el-input>
+                        <el-input v-model="formInline.name" placeholder="商户名称"/>
                     </el-form-item>
                     <el-form-item label="技术顾问">
-                        <el-input v-model="formInline.tech_ad" placeholder="审批人"></el-input>
+                        <el-input v-model="formInline.tech_ad" placeholder="技术顾问"/>
                     </el-form-item>
                     <el-form-item label="登入次数">
-                        <el-input v-model="formInline.login_times" placeholder="审批人"></el-input>
+                        <el-input v-model="formInline.login_times" placeholder="登入次数"/>
                     </el-form-item>
                 </el-row>
                 <el-row>
                     <el-form-item label="公司类型">
-                        <el-input v-model="formInline.name" placeholder="审批人"></el-input>
+                        <el-input v-model="formInline.name" placeholder="公司类型"/>
                     </el-form-item>
                     <el-form-item label="服务开始">
-                        <el-date-picker
-                                v-model="service_start"
-                                type="date"
-                                value-format="yyyy-MM-dd"
-                                placeholder="服务开始日期">
+                        <el-date-picker v-model="formInline.service_start" type="date" value-format="yyyy-MM-dd"
+                                        placeholder="服务开始日期">
                         </el-date-picker>
                     </el-form-item>
                     <el-form-item label="查询记录">
-                        <el-input v-model="formInline.query_times" placeholder="查询记录"></el-input>
+                        <el-input v-model="formInline.query_times" placeholder="查询记录"/>
                     </el-form-item>
                 </el-row>
                 <el-row>
                     <el-form-item label="联系人">
-                        <el-input v-model="formInline.contact" placeholder="联系人"></el-input>
+                        <el-input v-model="formInline.contact" placeholder="联系人"/>
                     </el-form-item>
                     <el-form-item label="服务到期">
                         <el-date-picker
-                                v-model="service_expire"
+                                v-model="formInline.service_expire"
                                 type="date"
                                 value-format="yyyy-MM-dd"
                                 placeholder="服务到期日期">
@@ -76,7 +76,7 @@
                 </el-row>
                 <el-row>
                     <el-form-item label="手机">
-                        <el-input v-model="formInline.hand_phone" placeholder="手机"></el-input>
+                        <el-input v-model="formInline.hand_phone" placeholder="手机"/>
                     </el-form-item>
                     <el-form-item label="授权时间">
                         <el-time-picker
@@ -94,35 +94,35 @@
                 </el-row>
                 <el-row>
                     <el-form-item label="电话">
-                        <el-input v-model="formInline.tel_phone" placeholder="电话"></el-input>
+                        <el-input v-model="formInline.tel_phone" placeholder="电话"/>
                     </el-form-item>
                     <el-form-item label="授权key">
-                        <el-input v-model="formInline.auth_key" placeholder="授权key"></el-input>
+                        <el-input v-model="formInline.auth_key" placeholder="授权key"/>
                     </el-form-item>
                     <el-form-item label="授权次数">
-                        <el-input v-model="formInline.auth_number" placeholder=""></el-input>
+                        <el-input v-model="formInline.auth_number" placeholder=""/>
                     </el-form-item>
                 </el-row>
                 <el-row>
                     <el-form-item label="城市" class="large_item">
                         <el-cascader
-                                    v-model="formInline.city"
-                                     placeholder=""
-                                     :options="options"
-                                     filterable
-                                     change-on-select
-                        ></el-cascader>
+                                v-model="formInline.city"
+                                placeholder="可输入文字搜索"
+                                :options="options"
+                                filterable
+                                change-on-select
+                        />
                     </el-form-item>
                 </el-row>
                 <el-row>
 
-                    <el-form-item label="地址"  class="large_item">
-                        <el-input v-model="formInline.address" placeholder="地址"></el-input>
+                    <el-form-item label="地址" class="large_item">
+                        <el-input v-model="formInline.address" placeholder="地址"/>
                     </el-form-item>
                 </el-row>
                 <el-row>
                     <el-form-item label="授权IP" class="large_item">
-                        <el-input v-model="formInline.auth_ip" placeholder="授权IP"></el-input>
+                        <el-input v-model="formInline.auth_ip" placeholder="授权IP"/>
                     </el-form-item>
                 </el-row>
                 <el-row>
@@ -136,15 +136,13 @@
                             </el-option>
                         </el-select>
                     </el-form-item>
-                </el-row>
-                <el-row>
-                    <el-form-item label="备注">
-                        <el-input type="textarea" v-model="formInline.remarks"></el-input>
+
+                    <el-form-item label="备注" class="large_item">
+                        <el-input type="textarea" v-model="formInline.remarks"/>
                     </el-form-item>
-                </el-row>
-                <el-row>
-                    <el-form-item label="证照">
-                        <el-input v-model="formInline.pics" placeholder="审批人"></el-input>
+
+                    <el-form-item label="证照" class="large_item">
+                        <el-input v-model="formInline.pics" placeholder="审批人"/>
                     </el-form-item>
                 </el-row>
                 <el-row style="text-align:center;">
@@ -171,48 +169,48 @@
         name: "merchants",
         data() {
             return {
+                loading: true,
                 currentPage: 1,
-                totalPage:0,
+                totalPage: 0,
+                currentPageSize: 10,
                 tableData: [],
                 dialogFormVisible: false,
+                tempRow: {},
                 formInline: {
-                    id:'',
-                    name:'',
-                    type:'',
-                    contact:'',
-                    hand_phone:'',
-                    tech_ad:'',
-                    tel_phone:'',
-                    city:'',
-                    address:'',
-                    login_times:'',
-                    query_times:'',
-                    service_start:'',
-                    service_expire:'',
-                    auth_time:'',
-                    auth_speed:'',
-                    auth_number:'',
-                    auth_key:'',
-                    auth_ip:'',
-                    auth_brand:'',
-                    remarks:'',
-                    pics:'',
+                    id: '',
+                    name: '',
+                    type: '',
+                    contact: '',
+                    hand_phone: '',
+                    tech_ad: '',
+                    tel_phone: '',
+                    city: [],
+                    address: '',
+                    login_times: '',
+                    query_times: '',
+                    service_start: '',
+                    service_expire: '',
+                    auth_time: '',
+                    auth_speed: '',
+                    auth_number: '',
+                    auth_key: '',
+                    auth_ip: '',
+                    auth_brand: '',
+                    remarks: '',
+                    pics: '',
                 },
                 formLabelWidth: '120px',
-                options: area,
-                service_start:'',
-                service_expire:''
+                options: area
             }
         },
-        computed: {
-        },
-        mounted(){
-            let that=this
-            let params={currentPage:1,currentPageSize:10};
-            getMerchants(params).then(res=>{
-                this.totalPage=res.merchants.length;
-                this.currentPage=1;
-                that.tableData=res.merchants
+        computed: {},
+        mounted() {
+            let params = {currentPage: this.currentPage, currentPageSize: this.currentPageSize};
+            getMerchants(params).then(res => {
+                this.totalPage = res.total;
+                // this.currentPage = this.currentPage;
+                this.tableData = res.merchants
+                this.loading = false;
             });
         },
         methods: {
@@ -224,6 +222,16 @@
                 console.log(Page.data().currentPage)
             },
             editMerchants() {
+                if (this.tempRow) {
+                    this.tempRow.city = this.tempRow.city == '' ? [] : (this.tempRow.city).split(',');
+                    this.tempRow.auth_time = []
+                    // console.log([this.tempRow.auth_start_time,this.tempRow.auth_end_time]);
+                    this.tempRow.auth_time.push(this.tempRow.auth_start_time);
+                    this.tempRow.auth_time.push(this.tempRow.auth_end_time);
+                    this.formInline = this.tempRow;
+
+                    this.dialogFormVisible = true;
+                }
             },
             delMerchants() {
             },
@@ -233,14 +241,21 @@
             submitForm() {
                 console.log(this.formInline)
             },
-            loadData(params){
-                console.log(2222222)
-                getMerchants(params).then(res=>{
-                    this.totalPage=res.merchants.length;
-                    this.currentPage=params.currentPage;
-                    this.currentPageSize=params.currentPageSize;
-                    that.tableData=res.merchants
+            loadData(params) {
+                this.loading = true;
+                getMerchants(params).then(res => {
+                    this.totalPage = res.total;
+                    this.currentPage = params.currentPage;
+                    this.currentPageSize = params.currentPageSize;
+                    this.tableData = res.merchants
+                    this.loading = false;
                 });
+            },
+            clickTableRow(row, event, column) {
+                this.tempRow = row;
+            },
+            auth_time_format(row, column, cellValue, index){
+                return row.auth_start_time+' - '+row.auth_end_time
             }
         }
 
@@ -250,32 +265,41 @@
     .btn-groups {
         padding: 15px;
     }
-    .el-form-item{
-        margin-bottom:10px;
+
+    .el-form-item {
+        margin-bottom: 10px;
     }
-    .large_item{
-        width:100%;
+
+    .large_item {
+        width: 100%;
     }
-    .large_item .el-form-item__content{
-        width:80%;
+
+    .large_item .el-form-item__content {
+        width: 80%;
     }
-    .large_item .el-form-item__content .el-select,.large_item .el-form-item__content .el-input,.large_item .el-form-item__content .el-cascader{
-        width:100%;
+
+    .large_item .el-form-item__content .el-select, .large_item .el-form-item__content .el-input, .large_item .el-form-item__content .el-cascader {
+        width: 100%;
     }
-    .el-date-editor.el-input, .el-date-editor.el-input__inner{
-        width:auto;
+
+    .el-date-editor.el-input, .el-date-editor.el-input__inner {
+        width: auto;
     }
-    .el-input--prefix .el-input__inner{
+
+    .el-input--prefix .el-input__inner {
         text-indent: 30px;
         /*padding-left: 0;*/
     }
-    .el-input--suffix .el-input__inner{
+
+    .el-input--suffix .el-input__inner {
         padding-right: 0;
     }
-    .medium_item{
+
+    .medium_item {
         width: 60%;
     }
-    .medium_item .el-form-item__content{
+
+    .medium_item .el-form-item__content {
         width: 60%;
     }
 </style>

@@ -102,7 +102,7 @@
         background-color: #fff;
         box-shadow: 0px 1px 11px 2px rgba(42, 42, 42, 0.1);
         border-top: 4px solid #00b5ad;
-        margin-bottom: 40px;
+        margin-bottom: 25px;
         margin-top: 0px;
     }
 

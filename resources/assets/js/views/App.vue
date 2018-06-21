@@ -6,7 +6,8 @@
                 <router-view></router-view>
             </div>
         </div>
-        <el-footer>
+        <!--<div>-->
+            <el-footer>
                 <el-col :span="10" style="text-align: right;padding-right:15px;">
                     <img src="/images/logo.png" alt="">
                 </el-col>
@@ -14,8 +15,11 @@
                     <p class="copy">Copyright © 2018.百思易科技.All Rights Reserved.</p>
                     <p class="beian">ICP备案号：粤ICP备123456号</p>
                 </el-col>
-        </el-footer>
+            </el-footer>
+        <!--</div>-->
+
     </el-container>
+
 </template>
 
 <script>
@@ -54,24 +58,6 @@
     footer .container p a {
         color: inherit;
     }
-
-    /*@media (min-width: 768px) {
-        .container {
-            width: 750px
-        }
-    }
-
-    @media (min-width: 992px) {
-        .container {
-            width: 970px
-        }
-    }
-
-    @media (min-width: 1200px) {
-        .container {
-            width: 1170px
-        }
-    }*/
     .main-container{
         width: auto;
         margin: 0 5%;
@@ -79,5 +65,8 @@
     footer img {
         margin-top: 1.5%;
         width: 130px;
+    }
+    [v-cloak] {
+        opacity: 0;
     }
 </style>

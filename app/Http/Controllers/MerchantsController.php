@@ -16,10 +16,10 @@ class MerchantsController extends Controller
     public function getMerchants(Request $request)
     {
 //        var_dump($request->all());
-
+        $total=Merchant::count();
         $pageSize=$request->currentPageSize;
         $page=$request->currentPage;
         $merchants = Merchant::offset(($page-1)*$pageSize)->limit($pageSize)->get()->toArray();
-        return response()->json(['code' => 200, 'merchants' => $merchants]);
+        return response()->json(['code' => 200, 'merchants' => $merchants,'total'=>$total]);
     }
 }

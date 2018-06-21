@@ -15,7 +15,7 @@ class AddCidToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->integer('cid')->default(0);
-            $table->index('cid');
+//            $table->index('cid');
         });
     }
 
@@ -28,7 +28,7 @@ class AddCidToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('cid');
-            $table->dropIndex('cid');
+//            $table->dropIndex('cid');
         });
     }
 }
