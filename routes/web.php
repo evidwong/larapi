@@ -13,4 +13,8 @@
 Route::get('/', 'IndexController@index')->name('index');
 
 Route::post('login', 'LoginController@login');
-Route::post('getMerchants', 'MerchantsController@getMerchants');
+Route::post('getMerchants', 'MerchantsController@getMerchants')->name('merchants.getMerchants');
+Route::post('createMerchants', 'MerchantsController@createMerchants')->name('merchants.createMerchants');
+Route::post('deleteMerchants', 'MerchantsController@deleteMerchants')->name('merchants.deleteMerchants');
+Route::post('delayMerchants', 'MerchantsController@delayMerchants')->name('merchants.delayMerchants');
+Route::post('getBaseInfo', 'BaseInfosController@getBaseInfo')->name('baseinfos.getBaseInfo');

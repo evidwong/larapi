@@ -14263,14 +14263,12 @@ process.umask = function() { return 0; };
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return requestLogin; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getMerchants; });
-/* unused harmony export getUserList */
-/* unused harmony export getUserListPage */
-/* unused harmony export removeUser */
-/* unused harmony export batchRemoveUser */
-/* unused harmony export editUser */
-/* unused harmony export addUser */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return requestLogin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return getMerchants; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return createMerchants; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return deleteMerchants; });
+/* unused harmony export delayMerchants */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return getBaseInfo; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 
@@ -14287,29 +14285,25 @@ var getMerchants = function getMerchants(params) {
     return res.data;
   });
 };
-
-var getUserList = function getUserList(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(base + '/user/list', { params: params });
+var createMerchants = function createMerchants(params) {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/createMerchants', params).then(function (res) {
+    return res.data;
+  });
 };
-
-var getUserListPage = function getUserListPage(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(base + '/user/listpage', { params: params });
+var deleteMerchants = function deleteMerchants(params) {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/deleteMerchants', params).then(function (res) {
+    return res.data;
+  });
 };
-
-var removeUser = function removeUser(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(base + '/user/remove', { params: params });
+var delayMerchants = function delayMerchants(params) {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/delayMerchants', params).then(function (res) {
+    return res.data;
+  });
 };
-
-var batchRemoveUser = function batchRemoveUser(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(base + '/user/batchremove', { params: params });
-};
-
-var editUser = function editUser(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(base + '/user/edit', { params: params });
-};
-
-var addUser = function addUser(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(base + '/user/add', { params: params });
+var getBaseInfo = function getBaseInfo(params) {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/getBaseInfo', params).then(function (res) {
+    return res.data;
+  });
 };
 
 /***/ }),
@@ -17253,6 +17247,15 @@ __WEBPACK_IMPORTED_MODULE_3_axios___default.a.interceptors.request.use(function 
 }, function (err) {
     return Promise.reject(err);
 });
+/*axios.interceptors.response.use(function (response){
+    // 处理响应数据
+    return response;
+}, function (error){
+    // 处理响应失败
+    console.log('axios error response');
+    console.log(error);
+    return Promise.reject(error);
+});*/
 __WEBPACK_IMPORTED_MODULE_1__router_router_js__["a" /* default */].beforeEach(function (to, from, next) {
     if (to.path === '/login') {
         sessionStorage.removeItem('userInfo');
@@ -20763,13 +20766,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     _this2.logining = true;
                     //NProgress.start();
                     var loginParams = { email: _this2.ruleForm.email, passcode: _this2.ruleForm.passcode };
-                    Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["b" /* requestLogin */])(loginParams).then(function (data) {
+                    Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["e" /* requestLogin */])(loginParams).then(function (data) {
                         _this2.logining = false;
                         var msg = data.msg,
                             code = data.code,
                             user = data.user;
 
-                        if (code !== 200) {
+                        if (code !== 0) {
                             _this2.$message.error('登录失败，请检查邮箱和密码是否正确');
                         } else {
                             _this2.$message({
@@ -21831,7 +21834,7 @@ exports = module.exports = __webpack_require__(9)(false);
 
 
 // module
-exports.push([module.i, "\n.btn-groups {\n    padding: 15px;\n}\n.el-form-item {\n    margin-bottom: 10px;\n}\n.large_item {\n    width: 100%;\n}\n.large_item .el-form-item__content {\n    width: 80%;\n}\n.large_item .el-form-item__content .el-select, .large_item .el-form-item__content .el-input, .large_item .el-form-item__content .el-cascader {\n    width: 100%;\n}\n.el-date-editor.el-input, .el-date-editor.el-input__inner {\n    width: auto;\n}\n.el-input--prefix .el-input__inner {\n    text-indent: 30px;\n    /*padding-left: 0;*/\n}\n.el-input--suffix .el-input__inner {\n    padding-right: 0;\n}\n.medium_item {\n    width: 60%;\n}\n.medium_item .el-form-item__content {\n    width: 60%;\n}\n", ""]);
+exports.push([module.i, "\n.btn-groups {\n    padding: 15px;\n}\n.el-form-item {\n    margin-bottom: 10px;\n}\n.large_item {\n    width: 100%;\n}\n.large_item .el-form-item__content {\n    width: 80%;\n}\n.large_item .el-form-item__content .el-select, .large_item .el-form-item__content .el-input, .large_item .el-form-item__content .el-cascader {\n    width: 100%;\n}\n.el-date-editor.el-input, .el-date-editor.el-input__inner {\n    width: auto;\n}\n.el-input--prefix .el-input__inner {\n    text-indent: 30px;\n    /*padding-left: 0;*/\n}\n.el-input--suffix .el-input__inner {\n    padding-right: 0;\n}\n.medium_item {\n    width: 60%;\n}\n.medium_item .el-form-item__content {\n    width: 60%;\n}\n.el-select .el-input__inner {\n    padding: 0 15px;\n}\n", ""]);
 
 // exports
 
@@ -22006,11 +22009,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
-// console.log(area);
+
+var globalFormData = {
+    id: '',
+    name: '',
+    type: '',
+    contact: '',
+    hand_phone: '',
+    tech_ad: '',
+    tel_phone: '',
+    city: [],
+    address: '',
+    login_times: '',
+    query_times: '',
+    service_start: '',
+    service_expire: '',
+    auth_time: '',
+    auth_speed: '',
+    auth_number: '',
+    auth_key: '',
+    auth_ip: '',
+    auth_brand: '',
+    remarks: '',
+    pics: ''
+};
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
         Page: __WEBPACK_IMPORTED_MODULE_1__components_Page_vue___default.a
@@ -22025,44 +22060,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             tableData: [],
             dialogFormVisible: false,
             tempRow: {},
-            formInline: {
-                id: '',
-                name: '',
-                type: '',
-                contact: '',
-                hand_phone: '',
-                tech_ad: '',
-                tel_phone: '',
-                city: [],
-                address: '',
-                login_times: '',
-                query_times: '',
-                service_start: '',
-                service_expire: '',
-                auth_time: '',
-                auth_speed: '',
-                auth_number: '',
-                auth_key: '',
-                auth_ip: '',
-                auth_brand: '',
-                remarks: '',
-                pics: ''
-            },
+            formData: globalFormData,
             formLabelWidth: '120px',
-            options: __WEBPACK_IMPORTED_MODULE_2__pca_code_json___default.a
+            options: __WEBPACK_IMPORTED_MODULE_2__pca_code_json___default.a,
+            submitLoading: false
         };
     },
 
-    computed: {},
+    computed: {
+        companyType: function companyType() {
+            if (localStorage.companyType) {
+                return JSON.parse(localStorage.companyType);
+            } else {
+                return [];
+            }
+        }
+    },
     mounted: function mounted() {
         var _this = this;
 
         var params = { currentPage: this.currentPage, currentPageSize: this.currentPageSize };
-        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["a" /* getMerchants */])(params).then(function (res) {
+        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["d" /* getMerchants */])(params).then(function (res) {
             _this.totalPage = res.total;
-            // this.currentPage = this.currentPage;
             _this.tableData = res.merchants;
             _this.loading = false;
+        });
+        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["c" /* getBaseInfo */])({ type: 1 }).then(function (res) {
+            localStorage.companyType = JSON.stringify(res.baseInfos);
         });
     },
 
@@ -22072,35 +22096,49 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         addMerchants: function addMerchants() {
             console.log(__WEBPACK_IMPORTED_MODULE_1__components_Page_vue___default.a.data().currentPage);
         },
-        editMerchants: function editMerchants() {
+        editMerchant: function editMerchant() {
             if (this.tempRow) {
                 this.tempRow.city = this.tempRow.city == '' ? [] : this.tempRow.city.split(',');
                 this.tempRow.auth_time = [];
-                // console.log([this.tempRow.auth_start_time,this.tempRow.auth_end_time]);
                 this.tempRow.auth_time.push(this.tempRow.auth_start_time);
                 this.tempRow.auth_time.push(this.tempRow.auth_end_time);
-                this.formInline = this.tempRow;
-
+                this.formData = this.tempRow;
                 this.dialogFormVisible = true;
             }
         },
-        delMerchants: function delMerchants() {},
-        delayMerchants: function delayMerchants() {
+        delayMerchant: function delayMerchant() {
             //
         },
         submitForm: function submitForm() {
-            console.log(this.formInline);
-        },
-        loadData: function loadData(params) {
             var _this2 = this;
 
+            this.submitLoading = true;
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["a" /* createMerchants */])(this.formData).then(function (res) {
+                console.log(res);
+                _this2.formData = globalFormData;
+                _this2.submitLoading = false;
+                _this2.dialogFormVisible = false;
+                _this2.$message({
+                    message: res.msg,
+                    type: 'success',
+                    onClose: _this2.loadData({
+                        currentPage: _this2.currentPage,
+                        currentPageSize: _this2.currentPageSize
+                    })
+                });
+            });
+            console.log(this.formData);
+        },
+        loadData: function loadData(params) {
+            var _this3 = this;
+
             this.loading = true;
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["a" /* getMerchants */])(params).then(function (res) {
-                _this2.totalPage = res.total;
-                _this2.currentPage = params.currentPage;
-                _this2.currentPageSize = params.currentPageSize;
-                _this2.tableData = res.merchants;
-                _this2.loading = false;
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["d" /* getMerchants */])(params).then(function (res) {
+                _this3.totalPage = res.total;
+                _this3.currentPage = params.currentPage;
+                _this3.currentPageSize = params.currentPageSize;
+                _this3.tableData = res.merchants;
+                _this3.loading = false;
             });
         },
         clickTableRow: function clickTableRow(row, event, column) {
@@ -22108,6 +22146,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         auth_time_format: function auth_time_format(row, column, cellValue, index) {
             return row.auth_start_time + ' - ' + row.auth_end_time;
+        },
+        delMerchant: function delMerchant() {
+            var _this4 = this;
+
+            if (!this.tempRow.hasOwnProperty('id') || this.tempRow.id == '') {
+                this.$message.error('请选择要删除的记录');
+                return;
+            }
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["b" /* deleteMerchants */])({ id: this.tempRow.id }).then(function (res) {
+                if (res.code != 0) {
+                    _this4.$message({
+                        message: '删除失败',
+                        type: 'warning'
+                    });
+                } else {
+                    if (_this4.tableData.length == 1 && _this4.currentPage > 1) {
+                        _this4.currentPage--;
+                    }
+                    _this4.$message({
+                        message: res.msg,
+                        type: 'success',
+                        onClose: _this4.loadData({
+                            currentPage: _this4.currentPage,
+                            currentPageSize: _this4.currentPageSize
+                        })
+                    });
+                }
+            });
         }
     }
 
@@ -22278,7 +22344,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "el-button",
-                { attrs: { type: "info" }, on: { click: _vm.editMerchants } },
+                { attrs: { type: "info" }, on: { click: _vm.editMerchant } },
                 [_vm._v("修改")]
               ),
               _vm._v(" "),
@@ -22286,19 +22352,21 @@ var render = function() {
                 "el-button",
                 {
                   attrs: { type: "warning" },
-                  on: { click: _vm.delayMerchants }
+                  on: { click: _vm.delayMerchant }
                 },
                 [_vm._v("延期")]
               ),
               _vm._v(" "),
               _c(
                 "el-button",
-                { attrs: { type: "danger" }, on: { click: _vm.delMerchants } },
+                { attrs: { type: "danger" }, on: { click: _vm.delMerchant } },
                 [_vm._v("删除")]
               )
             ],
             1
-          )
+          ),
+          _vm._v(" "),
+          _c("el-row")
         ],
         1
       ),
@@ -22315,7 +22383,7 @@ var render = function() {
             attrs: {
               prop: "id",
               label: "ID",
-              "show-overflow-tooltip": "true",
+              "show-overflow-tooltip": "",
               width: "50px"
             }
           }),
@@ -22324,7 +22392,7 @@ var render = function() {
             attrs: {
               prop: "name",
               label: "商户名称",
-              "show-overflow-tooltip": "true",
+              "show-overflow-tooltip": "",
               width: "120px"
             }
           }),
@@ -22333,7 +22401,7 @@ var render = function() {
             attrs: {
               prop: "type",
               label: "公司类型",
-              "show-overflow-tooltip": "true",
+              "show-overflow-tooltip": "",
               width: "120px"
             }
           }),
@@ -22342,8 +22410,8 @@ var render = function() {
             attrs: {
               prop: "contact",
               label: "联系人",
-              "show-overflow-tooltip": "true",
-              width: "120px"
+              "show-overflow-tooltip": "",
+              width: "80px"
             }
           }),
           _vm._v(" "),
@@ -22351,8 +22419,8 @@ var render = function() {
             attrs: {
               prop: "hand_phone",
               label: "手机",
-              "show-overflow-tooltip": "true",
-              width: "120px"
+              "show-overflow-tooltip": "",
+              width: "100px"
             }
           }),
           _vm._v(" "),
@@ -22360,34 +22428,24 @@ var render = function() {
             attrs: {
               prop: "tech_ad",
               label: "技术顾问",
-              "show-overflow-tooltip": "true",
-              width: "120px"
+              "show-overflow-tooltip": "",
+              width: "80px"
             }
           }),
           _vm._v(" "),
           _c("el-table-column", {
-            attrs: {
-              prop: "service_start",
-              label: "服务开始",
-              "show-overflow-tooltip": "true",
-              width: "120px"
-            }
+            attrs: { prop: "service_start", label: "服务开始", width: "100px" }
           }),
           _vm._v(" "),
           _c("el-table-column", {
-            attrs: {
-              prop: "service_expire",
-              label: "服务到期",
-              "show-overflow-tooltip": "true",
-              width: "120px"
-            }
+            attrs: { prop: "service_expire", label: "服务到期", width: "100px" }
           }),
           _vm._v(" "),
           _c("el-table-column", {
             attrs: {
               prop: "created_at",
               label: "创建日期",
-              "show-overflow-tooltip": "true",
+              "show-overflow-tooltip": "",
               width: "120px"
             }
           }),
@@ -22396,7 +22454,7 @@ var render = function() {
             attrs: {
               prop: "auth_brand",
               label: "品牌",
-              "show-overflow-tooltip": "true",
+              "show-overflow-tooltip": "",
               width: "120px"
             }
           }),
@@ -22405,7 +22463,7 @@ var render = function() {
             attrs: {
               prop: "auth_ip",
               label: "授权IP",
-              "show-overflow-tooltip": "true",
+              "show-overflow-tooltip": "",
               width: "120px"
             }
           }),
@@ -22415,36 +22473,20 @@ var render = function() {
               prop: "auth_time",
               formatter: _vm.auth_time_format,
               label: "授权时间",
-              "show-overflow-tooltip": "true",
               width: "200px"
             }
           }),
           _vm._v(" "),
           _c("el-table-column", {
-            attrs: {
-              prop: "auth_speed",
-              label: "授权速度",
-              "show-overflow-tooltip": "true",
-              width: "120px"
-            }
+            attrs: { prop: "auth_speed", label: "授权速度", width: "80px" }
           }),
           _vm._v(" "),
           _c("el-table-column", {
-            attrs: {
-              prop: "login_times",
-              label: "登入次数",
-              "show-overflow-tooltip": "true",
-              width: "120px"
-            }
+            attrs: { prop: "login_times", label: "登入次数", width: "80px" }
           }),
           _vm._v(" "),
           _c("el-table-column", {
-            attrs: {
-              prop: "query_times",
-              label: "查询记录",
-              "show-overflow-tooltip": "true",
-              width: "120px"
-            }
+            attrs: { prop: "query_times", label: "查询记录", width: "80px" }
           })
         ],
         1
@@ -22487,10 +22529,18 @@ var render = function() {
           _c(
             "el-form",
             {
+              directives: [
+                {
+                  name: "loading",
+                  rawName: "v-loading",
+                  value: _vm.submitLoading,
+                  expression: "submitLoading"
+                }
+              ],
               staticClass: "demo-form-inline",
               attrs: {
                 inline: true,
-                model: _vm.formInline,
+                model: _vm.formData,
                 "label-width": "70px"
               }
             },
@@ -22505,11 +22555,11 @@ var render = function() {
                       _c("el-input", {
                         attrs: { placeholder: "商户名称" },
                         model: {
-                          value: _vm.formInline.name,
+                          value: _vm.formData.name,
                           callback: function($$v) {
-                            _vm.$set(_vm.formInline, "name", $$v)
+                            _vm.$set(_vm.formData, "name", $$v)
                           },
-                          expression: "formInline.name"
+                          expression: "formData.name"
                         }
                       })
                     ],
@@ -22523,11 +22573,11 @@ var render = function() {
                       _c("el-input", {
                         attrs: { placeholder: "技术顾问" },
                         model: {
-                          value: _vm.formInline.tech_ad,
+                          value: _vm.formData.tech_ad,
                           callback: function($$v) {
-                            _vm.$set(_vm.formInline, "tech_ad", $$v)
+                            _vm.$set(_vm.formData, "tech_ad", $$v)
                           },
-                          expression: "formInline.tech_ad"
+                          expression: "formData.tech_ad"
                         }
                       })
                     ],
@@ -22541,11 +22591,11 @@ var render = function() {
                       _c("el-input", {
                         attrs: { placeholder: "登入次数" },
                         model: {
-                          value: _vm.formInline.login_times,
+                          value: _vm.formData.login_times,
                           callback: function($$v) {
-                            _vm.$set(_vm.formInline, "login_times", $$v)
+                            _vm.$set(_vm.formData, "login_times", $$v)
                           },
-                          expression: "formInline.login_times"
+                          expression: "formData.login_times"
                         }
                       })
                     ],
@@ -22562,16 +22612,25 @@ var render = function() {
                     "el-form-item",
                     { attrs: { label: "公司类型" } },
                     [
-                      _c("el-input", {
-                        attrs: { placeholder: "公司类型" },
-                        model: {
-                          value: _vm.formInline.name,
-                          callback: function($$v) {
-                            _vm.$set(_vm.formInline, "name", $$v)
-                          },
-                          expression: "formInline.name"
-                        }
-                      })
+                      _c(
+                        "el-select",
+                        {
+                          attrs: { placeholder: "请选择公司类型" },
+                          model: {
+                            value: _vm.formData.type,
+                            callback: function($$v) {
+                              _vm.$set(_vm.formData, "type", $$v)
+                            },
+                            expression: "formData.type"
+                          }
+                        },
+                        _vm._l(_vm.companyType, function(item) {
+                          return _c("el-option", {
+                            key: item.id,
+                            attrs: { label: item.name, value: item.name }
+                          })
+                        })
+                      )
                     ],
                     1
                   ),
@@ -22587,11 +22646,11 @@ var render = function() {
                           placeholder: "服务开始日期"
                         },
                         model: {
-                          value: _vm.formInline.service_start,
+                          value: _vm.formData.service_start,
                           callback: function($$v) {
-                            _vm.$set(_vm.formInline, "service_start", $$v)
+                            _vm.$set(_vm.formData, "service_start", $$v)
                           },
-                          expression: "formInline.service_start"
+                          expression: "formData.service_start"
                         }
                       })
                     ],
@@ -22605,11 +22664,11 @@ var render = function() {
                       _c("el-input", {
                         attrs: { placeholder: "查询记录" },
                         model: {
-                          value: _vm.formInline.query_times,
+                          value: _vm.formData.query_times,
                           callback: function($$v) {
-                            _vm.$set(_vm.formInline, "query_times", $$v)
+                            _vm.$set(_vm.formData, "query_times", $$v)
                           },
-                          expression: "formInline.query_times"
+                          expression: "formData.query_times"
                         }
                       })
                     ],
@@ -22629,11 +22688,11 @@ var render = function() {
                       _c("el-input", {
                         attrs: { placeholder: "联系人" },
                         model: {
-                          value: _vm.formInline.contact,
+                          value: _vm.formData.contact,
                           callback: function($$v) {
-                            _vm.$set(_vm.formInline, "contact", $$v)
+                            _vm.$set(_vm.formData, "contact", $$v)
                           },
-                          expression: "formInline.contact"
+                          expression: "formData.contact"
                         }
                       })
                     ],
@@ -22651,11 +22710,11 @@ var render = function() {
                           placeholder: "服务到期日期"
                         },
                         model: {
-                          value: _vm.formInline.service_expire,
+                          value: _vm.formData.service_expire,
                           callback: function($$v) {
-                            _vm.$set(_vm.formInline, "service_expire", $$v)
+                            _vm.$set(_vm.formData, "service_expire", $$v)
                           },
-                          expression: "formInline.service_expire"
+                          expression: "formData.service_expire"
                         }
                       })
                     ],
@@ -22677,11 +22736,11 @@ var render = function() {
                       _c("el-input", {
                         attrs: { placeholder: "手机" },
                         model: {
-                          value: _vm.formInline.hand_phone,
+                          value: _vm.formData.hand_phone,
                           callback: function($$v) {
-                            _vm.$set(_vm.formInline, "hand_phone", $$v)
+                            _vm.$set(_vm.formData, "hand_phone", $$v)
                           },
-                          expression: "formInline.hand_phone"
+                          expression: "formData.hand_phone"
                         }
                       })
                     ],
@@ -22702,11 +22761,11 @@ var render = function() {
                           placeholder: "选择时间范围"
                         },
                         model: {
-                          value: _vm.formInline.auth_time,
+                          value: _vm.formData.auth_time,
                           callback: function($$v) {
-                            _vm.$set(_vm.formInline, "auth_time", $$v)
+                            _vm.$set(_vm.formData, "auth_time", $$v)
                           },
-                          expression: "formInline.auth_time"
+                          expression: "formData.auth_time"
                         }
                       })
                     ],
@@ -22726,11 +22785,11 @@ var render = function() {
                       _c("el-input", {
                         attrs: { placeholder: "电话" },
                         model: {
-                          value: _vm.formInline.tel_phone,
+                          value: _vm.formData.tel_phone,
                           callback: function($$v) {
-                            _vm.$set(_vm.formInline, "tel_phone", $$v)
+                            _vm.$set(_vm.formData, "tel_phone", $$v)
                           },
-                          expression: "formInline.tel_phone"
+                          expression: "formData.tel_phone"
                         }
                       })
                     ],
@@ -22744,11 +22803,11 @@ var render = function() {
                       _c("el-input", {
                         attrs: { placeholder: "授权key" },
                         model: {
-                          value: _vm.formInline.auth_key,
+                          value: _vm.formData.auth_key,
                           callback: function($$v) {
-                            _vm.$set(_vm.formInline, "auth_key", $$v)
+                            _vm.$set(_vm.formData, "auth_key", $$v)
                           },
-                          expression: "formInline.auth_key"
+                          expression: "formData.auth_key"
                         }
                       })
                     ],
@@ -22762,11 +22821,11 @@ var render = function() {
                       _c("el-input", {
                         attrs: { placeholder: "" },
                         model: {
-                          value: _vm.formInline.auth_number,
+                          value: _vm.formData.auth_number,
                           callback: function($$v) {
-                            _vm.$set(_vm.formInline, "auth_number", $$v)
+                            _vm.$set(_vm.formData, "auth_number", $$v)
                           },
-                          expression: "formInline.auth_number"
+                          expression: "formData.auth_number"
                         }
                       })
                     ],
@@ -22791,11 +22850,11 @@ var render = function() {
                           "change-on-select": ""
                         },
                         model: {
-                          value: _vm.formInline.city,
+                          value: _vm.formData.city,
                           callback: function($$v) {
-                            _vm.$set(_vm.formInline, "city", $$v)
+                            _vm.$set(_vm.formData, "city", $$v)
                           },
-                          expression: "formInline.city"
+                          expression: "formData.city"
                         }
                       })
                     ],
@@ -22815,11 +22874,11 @@ var render = function() {
                       _c("el-input", {
                         attrs: { placeholder: "地址" },
                         model: {
-                          value: _vm.formInline.address,
+                          value: _vm.formData.address,
                           callback: function($$v) {
-                            _vm.$set(_vm.formInline, "address", $$v)
+                            _vm.$set(_vm.formData, "address", $$v)
                           },
-                          expression: "formInline.address"
+                          expression: "formData.address"
                         }
                       })
                     ],
@@ -22839,11 +22898,11 @@ var render = function() {
                       _c("el-input", {
                         attrs: { placeholder: "授权IP" },
                         model: {
-                          value: _vm.formInline.auth_ip,
+                          value: _vm.formData.auth_ip,
                           callback: function($$v) {
-                            _vm.$set(_vm.formInline, "auth_ip", $$v)
+                            _vm.$set(_vm.formData, "auth_ip", $$v)
                           },
-                          expression: "formInline.auth_ip"
+                          expression: "formData.auth_ip"
                         }
                       })
                     ],
@@ -22869,11 +22928,11 @@ var render = function() {
                             placeholder: "请选择授权品牌"
                           },
                           model: {
-                            value: _vm.formInline.auth_brand,
+                            value: _vm.formData.auth_brand,
                             callback: function($$v) {
-                              _vm.$set(_vm.formInline, "auth_brand", $$v)
+                              _vm.$set(_vm.formData, "auth_brand", $$v)
                             },
-                            expression: "formInline.auth_brand"
+                            expression: "formData.auth_brand"
                           }
                         },
                         _vm._l(_vm.options, function(item) {
@@ -22894,11 +22953,11 @@ var render = function() {
                       _c("el-input", {
                         attrs: { type: "textarea" },
                         model: {
-                          value: _vm.formInline.remarks,
+                          value: _vm.formData.remarks,
                           callback: function($$v) {
-                            _vm.$set(_vm.formInline, "remarks", $$v)
+                            _vm.$set(_vm.formData, "remarks", $$v)
                           },
-                          expression: "formInline.remarks"
+                          expression: "formData.remarks"
                         }
                       })
                     ],
@@ -22912,11 +22971,11 @@ var render = function() {
                       _c("el-input", {
                         attrs: { placeholder: "审批人" },
                         model: {
-                          value: _vm.formInline.pics,
+                          value: _vm.formData.pics,
                           callback: function($$v) {
-                            _vm.$set(_vm.formInline, "pics", $$v)
+                            _vm.$set(_vm.formData, "pics", $$v)
                           },
-                          expression: "formInline.pics"
+                          expression: "formData.pics"
                         }
                       })
                     ],

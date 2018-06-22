@@ -13,7 +13,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        \App\Models\Merchant::observe(\App\Observers\MerchantObserver::class);
+        \Carbon\Carbon::setLocale('zh');
     }
 
     /**

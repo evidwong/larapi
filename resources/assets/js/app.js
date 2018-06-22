@@ -22,6 +22,15 @@ axios.interceptors.request.use(function (config) {
 }, function (err) {
     return Promise.reject(err);
 });
+/*axios.interceptors.response.use(function (response){
+    // 处理响应数据
+    return response;
+}, function (error){
+    // 处理响应失败
+    console.log('axios error response');
+    console.log(error);
+    return Promise.reject(error);
+});*/
 router.beforeEach((to, from, next) => {
     if (to.path === '/login') {
         sessionStorage.removeItem('userInfo')

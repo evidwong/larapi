@@ -55,7 +55,7 @@
                         requestLogin(loginParams).then(data => {
                             this.logining = false;
                             let {msg, code, user} = data;
-                            if (code !== 200) {
+                            if (code !== 0) {
                                 this.$message.error('登录失败，请检查邮箱和密码是否正确');
                             } else {
                                 this.$message({
