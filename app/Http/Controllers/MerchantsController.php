@@ -26,26 +26,37 @@ class MerchantsController extends Controller
     public function createMerchants(Request $request)
     {
 
+
         $data = $request->all();
-        $data['auth_start_time'] = $data['auth_time'][0];
-        $data['auth_end_time'] = $data['auth_time'][1];
-        $data['city'] = implode(',', $data['city']);
-        $data['auth_brand'] = implode(',', $data['auth_brand']);
-        unset($data['id']);
-        unset($data['auth_time']);
-        Merchant::create($data);
-        return response()->json(['code' => 0, 'msg' => '添加成功']);
+        $data['auth_start_time'] = (isset($data['auth_time']) && $data['auth_time']) ? $data['auth_time'][0] : '';
+        $data['auth_end_time'] = (isset($data['auth_time']) && $data['auth_time']) ? $data['auth_time'][1] : '';
+        $data['city'] = (isset($data['city']) && $data['city']) ? implode(',', $data['city']) : '';
+        $data['auth_brand'] = (isset($data['auth_brand']) && $data['auth_brand']) ? implode(',', $data['auth_brand']) : '';
+        if (isset($data['auth_time'])) {
+            unset($data['auth_time']);
+        }
+        if ($data['id']) {
+            $merchant = Merchant::find($data['id']);
+//            dd($data);
+            $merchant->update($data);
+            return response()->json(['code' => 0, 'msg' => '修改成功']);
+        } else {
+            unset($data['id']);
+            Merchant::create($data);
+            return response()->json(['code' => 0, 'msg' => '添加成功']);
+        }
+
     }
 
-    public function update(Request $request, Merchant $merchant)
+    /**
+     * @param array $data
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function updateMerchant($data = array())
     {
-        $data = $request->all();
-        $data['auth_start_time'] = $data['auth_time'][0];
-        $data['auth_end_time'] = $data['auth_time'][1];
-        $data['city'] = implode(',', $data['city']);
-        $data['auth_brand'] = implode(',', $data['auth_brand']);
+        $merchant = Merchant::find($data['id']);
         $merchant->update($data);
-        return response()->json(['code' => 0, 'msg' => '修改成功']);
+        return ['code' => 0, 'msg' => '修改成功'];
     }
 
     public function deleteMerchants(Merchant $merchant, Request $request)

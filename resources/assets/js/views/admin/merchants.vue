@@ -80,7 +80,7 @@
                         </el-date-picker>
                     </el-form-item>
                     <el-form-item label="">
-                        <!--<el-input v-model="formData.name" placeholder="审批人"></el-input>-->
+
                     </el-form-item>
                 </el-row>
                 <el-row>
@@ -162,12 +162,38 @@
                 </el-row>
             </el-form>
         </el-dialog>
+
+
+        <el-dialog title="增加商户" :visible.sync="delayDialogVisible" :close-on-click-modal="false">
+            <el-form :model="formData" class="demo-form-inline" label-width="70px"
+                     v-loading="submitLoading">
+                <el-row>
+                    <el-form-item label="商户名称">
+                        <el-input v-model="formData.name" readonly="true" placeholder="商户名称"/>
+                    </el-form-item>
+                </el-row>
+                <el-row>
+                    <el-form-item label="服务到期">
+                        <el-date-picker v-model="formData.service_expire" type="date" value-format="yyyy-MM-dd"
+                                        placeholder="服务开始日期">
+                        </el-date-picker>
+                    </el-form-item>
+                </el-row>
+
+                <el-row style="text-align:center;">
+                    <el-form-item>
+                        <el-button type="primary" size="medium" @click="submitDelayForm">提交</el-button>
+                        <el-button size="medium" @click="delayDialogVisible = false">取消</el-button>
+                    </el-form-item>
+                </el-row>
+            </el-form>
+        </el-dialog>
     </div>
 
 
 </template>
 <script>
-    import {getMerchants, deleteMerchants, getBaseInfo, createMerchants} from '../../api/api';
+    import {getMerchants, deleteMerchants, getBaseInfo, createMerchants, updateMerchants} from '../../api/api';
     import Page from "../../components/Page.vue"
     import area from '../../pca-code.json';
 
@@ -211,7 +237,8 @@
                 formData: globalFormData,
                 formLabelWidth: '120px',
                 options: area,
-                submitLoading: false
+                submitLoading: false,
+                delayDialogVisible: false
             }
         },
         computed: {
@@ -253,25 +280,59 @@
                 }
             },
             delayMerchant() {
-                //
+                if (this.tempRow) {
+                    this.formData = this.tempRow;
+                    this.delayDialogVisible = true;
+                }
+            },
+            submitDelayForm() {
+                this.submitLoading = true;
+                createMerchants({
+                    id: this.formData.id,
+                    service_expire: this.formData.service_expire,
+                    action: 'delay'
+                }).then(res => {
+                    console.log(res);
+                    this.formData = globalFormData;
+                    this.submitLoading = false;
+                    this.delayDialogVisible = false;
+                    this.$message({
+                        message: res.msg,
+                        type: 'success',
+                        onClose: () => {
+                            console.log('setTimeOut')
+                            setTimeout(() => {
+                                console.log('setTimeOut')
+                                this.loadData({
+                                    currentPage: this.currentPage,
+                                    currentPageSize: this.currentPageSize
+                                })
+                            }, 1000)
+                        }
+                    });
+                });
             },
             submitForm() {
                 this.submitLoading = true;
                 createMerchants(this.formData).then(res => {
-                    console.log(res);
                     this.formData = globalFormData;
                     this.submitLoading = false;
                     this.dialogFormVisible = false;
                     this.$message({
                         message: res.msg,
                         type: 'success',
-                        onClose: this.loadData({
-                            currentPage: this.currentPage,
-                            currentPageSize: this.currentPageSize
-                        })
+                        onClose: () => {
+                            console.log('setTimeOut')
+                            setTimeout(() => {
+                                console.log('setTimeOut')
+                                this.loadData({
+                                    currentPage: this.currentPage,
+                                    currentPageSize: this.currentPageSize
+                                })
+                            }, 1000)
+                        }
                     });
                 });
-                console.log(this.formData)
             },
             loadData(params) {
                 this.loading = true;

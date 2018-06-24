@@ -22018,6 +22018,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -22063,7 +22089,8 @@ var globalFormData = {
             formData: globalFormData,
             formLabelWidth: '120px',
             options: __WEBPACK_IMPORTED_MODULE_2__pca_code_json___default.a,
-            submitLoading: false
+            submitLoading: false,
+            delayDialogVisible: false
         };
     },
 
@@ -22107,38 +22134,74 @@ var globalFormData = {
             }
         },
         delayMerchant: function delayMerchant() {
-            //
+            if (this.tempRow) {
+                this.formData = this.tempRow;
+                this.delayDialogVisible = true;
+            }
         },
-        submitForm: function submitForm() {
+        submitDelayForm: function submitDelayForm() {
             var _this2 = this;
 
             this.submitLoading = true;
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["a" /* createMerchants */])(this.formData).then(function (res) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["a" /* createMerchants */])({
+                id: this.formData.id,
+                service_expire: this.formData.service_expire,
+                action: 'delay'
+            }).then(function (res) {
                 console.log(res);
                 _this2.formData = globalFormData;
                 _this2.submitLoading = false;
-                _this2.dialogFormVisible = false;
+                _this2.delayDialogVisible = false;
                 _this2.$message({
                     message: res.msg,
                     type: 'success',
-                    onClose: _this2.loadData({
-                        currentPage: _this2.currentPage,
-                        currentPageSize: _this2.currentPageSize
-                    })
+                    onClose: function onClose() {
+                        console.log('setTimeOut');
+                        setTimeout(function () {
+                            console.log('setTimeOut');
+                            _this2.loadData({
+                                currentPage: _this2.currentPage,
+                                currentPageSize: _this2.currentPageSize
+                            });
+                        }, 1000);
+                    }
                 });
             });
-            console.log(this.formData);
+        },
+        submitForm: function submitForm() {
+            var _this3 = this;
+
+            this.submitLoading = true;
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["a" /* createMerchants */])(this.formData).then(function (res) {
+                _this3.formData = globalFormData;
+                _this3.submitLoading = false;
+                _this3.dialogFormVisible = false;
+                _this3.$message({
+                    message: res.msg,
+                    type: 'success',
+                    onClose: function onClose() {
+                        console.log('setTimeOut');
+                        setTimeout(function () {
+                            console.log('setTimeOut');
+                            _this3.loadData({
+                                currentPage: _this3.currentPage,
+                                currentPageSize: _this3.currentPageSize
+                            });
+                        }, 1000);
+                    }
+                });
+            });
         },
         loadData: function loadData(params) {
-            var _this3 = this;
+            var _this4 = this;
 
             this.loading = true;
             Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["d" /* getMerchants */])(params).then(function (res) {
-                _this3.totalPage = res.total;
-                _this3.currentPage = params.currentPage;
-                _this3.currentPageSize = params.currentPageSize;
-                _this3.tableData = res.merchants;
-                _this3.loading = false;
+                _this4.totalPage = res.total;
+                _this4.currentPage = params.currentPage;
+                _this4.currentPageSize = params.currentPageSize;
+                _this4.tableData = res.merchants;
+                _this4.loading = false;
             });
         },
         clickTableRow: function clickTableRow(row, event, column) {
@@ -22148,7 +22211,7 @@ var globalFormData = {
             return row.auth_start_time + ' - ' + row.auth_end_time;
         },
         delMerchant: function delMerchant() {
-            var _this4 = this;
+            var _this5 = this;
 
             if (!this.tempRow.hasOwnProperty('id') || this.tempRow.id == '') {
                 this.$message.error('请选择要删除的记录');
@@ -22156,20 +22219,20 @@ var globalFormData = {
             }
             Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["b" /* deleteMerchants */])({ id: this.tempRow.id }).then(function (res) {
                 if (res.code != 0) {
-                    _this4.$message({
+                    _this5.$message({
                         message: '删除失败',
                         type: 'warning'
                     });
                 } else {
-                    if (_this4.tableData.length == 1 && _this4.currentPage > 1) {
-                        _this4.currentPage--;
+                    if (_this5.tableData.length == 1 && _this5.currentPage > 1) {
+                        _this5.currentPage--;
                     }
-                    _this4.$message({
+                    _this5.$message({
                         message: res.msg,
                         type: 'success',
-                        onClose: _this4.loadData({
-                            currentPage: _this4.currentPage,
-                            currentPageSize: _this4.currentPageSize
+                        onClose: _this5.loadData({
+                            currentPage: _this5.currentPage,
+                            currentPageSize: _this5.currentPageSize
                         })
                     });
                 }
@@ -23008,6 +23071,129 @@ var render = function() {
                           on: {
                             click: function($event) {
                               _vm.dialogFormVisible = false
+                            }
+                          }
+                        },
+                        [_vm._v("取消")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-dialog",
+        {
+          attrs: {
+            title: "增加商户",
+            visible: _vm.delayDialogVisible,
+            "close-on-click-modal": false
+          },
+          on: {
+            "update:visible": function($event) {
+              _vm.delayDialogVisible = $event
+            }
+          }
+        },
+        [
+          _c(
+            "el-form",
+            {
+              directives: [
+                {
+                  name: "loading",
+                  rawName: "v-loading",
+                  value: _vm.submitLoading,
+                  expression: "submitLoading"
+                }
+              ],
+              staticClass: "demo-form-inline",
+              attrs: { model: _vm.formData, "label-width": "70px" }
+            },
+            [
+              _c(
+                "el-row",
+                [
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "商户名称" } },
+                    [
+                      _c("el-input", {
+                        attrs: { readonly: "true", placeholder: "商户名称" },
+                        model: {
+                          value: _vm.formData.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formData, "name", $$v)
+                          },
+                          expression: "formData.name"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-row",
+                [
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "服务到期" } },
+                    [
+                      _c("el-date-picker", {
+                        attrs: {
+                          type: "date",
+                          "value-format": "yyyy-MM-dd",
+                          placeholder: "服务开始日期"
+                        },
+                        model: {
+                          value: _vm.formData.service_expire,
+                          callback: function($$v) {
+                            _vm.$set(_vm.formData, "service_expire", $$v)
+                          },
+                          expression: "formData.service_expire"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-row",
+                { staticStyle: { "text-align": "center" } },
+                [
+                  _c(
+                    "el-form-item",
+                    [
+                      _c(
+                        "el-button",
+                        {
+                          attrs: { type: "primary", size: "medium" },
+                          on: { click: _vm.submitDelayForm }
+                        },
+                        [_vm._v("提交")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-button",
+                        {
+                          attrs: { size: "medium" },
+                          on: {
+                            click: function($event) {
+                              _vm.delayDialogVisible = false
                             }
                           }
                         },
