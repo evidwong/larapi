@@ -18,3 +18,12 @@ Route::post('createMerchants', 'MerchantsController@createMerchants')->name('mer
 Route::post('deleteMerchants', 'MerchantsController@deleteMerchants')->name('merchants.deleteMerchants');
 Route::post('delayMerchants', 'MerchantsController@delayMerchants')->name('merchants.delayMerchants');
 Route::post('getBaseInfo', 'BaseInfosController@getBaseInfo')->name('baseinfos.getBaseInfo');
+Route::post('getBrands', 'BrandsController@getBrands')->name('brands.getBrands');
+
+Route::post('getBrandConfigs', 'BrandsController@getBrandConfigs')->name('brands.getBrandConfigs');
+Route::post('createBrandConfig', 'BrandsController@createBrandConfig')->name('brands.createBrandConfig');
+Route::post('deleteBrandConfig', 'BrandsController@deleteBrandConfig')->name('brands.deleteBrandConfig');
+
+Route::post('getVinConfigs', 'VinsController@getVinConfigs')->name('Vins.getVinConfigs');
+Route::post('createVinConfig', 'VinsController@createVinConfig')->name('Vins.createVinConfig');
+Route::post('deleteVinConfig', 'VinsController@deleteVinConfig')->name('Vins.deleteVinConfig');

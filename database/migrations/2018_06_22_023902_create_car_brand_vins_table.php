@@ -15,12 +15,17 @@ class CreateCarBrandVinsTable extends Migration
     {
         Schema::create('car_brand_vins', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('brand_id');
+            $table->string('vin_prefix');
+            $table->mediumInteger('brand_id');
             $table->string('brand_name');
-            $table->string('vin');
             $table->string('db_name');
-            $table->string('db_address');
-            $table->string('db_port');
+            $table->string('db_host');
+            $table->mediumInteger('db_port')->default(3600);
+            $table->string('index_name');
+            $table->string('index_type')->nullable();
+            $table->string('index_host')->default(9200);
+            $table->mediumInteger('index_port');
+            $table->tinyInteger('is_del')->default(0);
             $table->timestamps();
         });
     }

@@ -8,3 +8,12 @@ export const createMerchants = params => { return axios.post(`${base}/createMerc
 export const deleteMerchants = params => { return axios.post(`${base}/deleteMerchants`, params).then(res => res.data); };
 export const delayMerchants = params => { return axios.post(`${base}/delayMerchants`, params).then(res => res.data); };
 export const getBaseInfo = params => { return axios.post(`${base}/getBaseInfo`, params).then(res => res.data); };
+export const getBrands = params => { return axios.post(`${base}/getBrands`, params).then(res => res.data); };
+export const getBrandConfigs = params => { return axios.post(`${base}/getBrandConfigs`, params).then(res => res.data); };
+
+export const createBrandConfig = params => { return axios.post(`${base}/createBrandConfig`, params).then(res => res.data); };
+export const deleteBrandConfig = params => { return axios.post(`${base}/deleteBrandConfig`, params).then(res => res.data); };
+
+export const getVinConfigs = params => { return axios.post(`${base}/getVinConfigs`, params).then(res => res.data); };
+export const createVinConfig = params => { return axios.post(`${base}/createVinConfig`, params).then(res => res.data); };
+export const deleteVinConfig = params => { return axios.post(`${base}/deleteVinConfig`, params).then(res => res.data); };

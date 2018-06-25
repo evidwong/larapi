@@ -13,7 +13,6 @@ class BaseInfosController extends Controller
                 ['type','=', $request->type],
                 ['status','=', 1]
             ])->get();
-//        var_dump($baseInfos);
         return response()->json(['code' => 0, 'msg' => '', 'baseInfos' => $baseInfos->toArray()]);
     }
 }
