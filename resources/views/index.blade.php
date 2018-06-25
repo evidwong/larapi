@@ -18,6 +18,30 @@
             margin-bottom: 60px;
             background: #f0f2f5;
         }
+        .el-dialog__header {
+            padding: 10px;
+            border-bottom: 1px solid #f5f5f5;
+        }
+        .el-dialog__headerbtn{
+            top:12px;
+        }
+        .el-form-item{
+            margin-bottom: 5px;
+        }
+        .el-dialog__body{
+            padding: 15px;
+        }
+        .el-form-item__content{
+            line-height: 35px;
+        }
+        .el-input__inner{
+            height: 35px;
+            line-height: 35px;
+        }
+        .el-form-item__label{
+            line-height: 35px;
+            font-weight: normal;
+        }
     </style>
 </head>
 <body>

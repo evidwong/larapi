@@ -7,12 +7,43 @@ use App\Models\BaseInfo;
 
 class BaseInfosController extends Controller
 {
-    public function getBaseInfo(Request $request)
+    public function getBaseInfos(Request $request)
     {
-        $baseInfos = BaseInfo::where([
-                ['type','=', $request->type],
-                ['status','=', 1]
+        $pageSize = $request->currentPageSize;
+        $page = $request->currentPage;
+        if ($page) {
+            $baseInfos = BaseInfo::where([
+                ['type', '=', $request->type],
+                ['status', '=', 1]
+            ])->offset(($page - 1) * $pageSize)->limit($pageSize)->get();
+            $json = ['code' => 0, 'msg' => '', 'data' => $baseInfos->toArray()];
+        } else {
+            $baseInfos = BaseInfo::where([
+                ['type', '=', $request->type],
+                ['status', '=', 1]
             ])->get();
-        return response()->json(['code' => 0, 'msg' => '', 'baseInfos' => $baseInfos->toArray()]);
+            $json = ['code' => 0, 'msg' => '', 'data' => $baseInfos->toArray()];
+        }
+        return response()->json($json);
+    }
+
+    public function createBaseInfo(Request $request)
+    {
+        $data = $request->all();
+        if ($data['id']) {
+            $baseinfo = BaseInfo::find($data['id']);
+            $baseinfo->update($data);
+            return response()->json(['code' => 0, 'msg' => '修改成功']);
+        } else {
+            unset($data['id']);
+            BaseInfo::create($data);
+            return response()->json(['code' => 0, 'msg' => '添加成功']);
+        }
+    }
+
+    public function deleteBaseInfo(Request $request)
+    {
+        BaseInfo::where('id', $request->id)->update(['is_del' => 1]);
+        return response()->json(['code' => 0, 'msg' => '删除成功']);
     }
 }

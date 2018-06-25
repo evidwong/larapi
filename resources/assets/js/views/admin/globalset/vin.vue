@@ -28,7 +28,7 @@
                   @onRefresh="loadData"/>
         </el-row>
 
-        <el-dialog title="增加车架号数据配置" :visible.sync="dialogFormVisible" :close-on-click-modal="false">
+        <el-dialog title="车架号数据配置" :visible.sync="dialogFormVisible" :close-on-click-modal="false">
             <el-form :model="formData" v-loading="submitLoading" label-width="100px">
                 <el-form-item label="车辆品牌">
                     <el-select @change="brandChange" filterable v-model="formData.brand_id" placeholder="请选择车辆品牌">
@@ -150,13 +150,15 @@
             },
             add() {
                 this.dialogFormVisible = true;
-                this.formData = globalFormData;
+                this.formData = Object.assign({},globalFormData);
             },
             Edit() {
-                if (this.tempRow) {
-                    this.formData = this.tempRow;
+                if (this.tempRow.hasOwnProperty('id')) {
+                    this.formData = Object.assign({},this.tempRow);
                     this.dialogFormVisible = true;
                     var that = this;
+                } else {
+                    this.$message.error('请选择要修改的记录');
                 }
             },
             submitForm() {

@@ -5,7 +5,7 @@
             <div class="navbar-header">
                 <!-- Collapsed Hamburger -->
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#app-navbar-collapse">
+                        data-target="#app-navbar-collapse" @click="showMenu">
                     <span class="sr-only">Toggle Navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -18,7 +18,7 @@
                 </router-link>
             </div>
 
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
+            <div class="collapse navbar-collapse" id="app-navbar-collapse" :style="showMobileMenu">
                 <el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" @select="handleSelect"
                          style="background-color:none !important;">
                     <el-menu-item index="/home">
@@ -35,9 +35,15 @@
                     </el-submenu>
                     <el-submenu index="/globalset">
                         <template slot="title">通用设置</template>
-                        <el-menu-item index="/globalset/brand"><router-link to="/globalset/brand">品牌设置</router-link></el-menu-item>
-                        <el-menu-item index="/globalset/vin"><router-link to="/globalset/vin">车架号设置</router-link></el-menu-item>
-                        <el-menu-item index="/globalset/companytype"><router-link to="/globalset/companytype">公司类型设置</router-link></el-menu-item>
+                        <el-menu-item index="/globalset/brand">
+                            <router-link to="/globalset/brand">品牌设置</router-link>
+                        </el-menu-item>
+                        <el-menu-item index="/globalset/vin">
+                            <router-link to="/globalset/vin">车架号设置</router-link>
+                        </el-menu-item>
+                        <el-menu-item index="/globalset/companytype">
+                            <router-link to="/globalset/companytype">公司类型设置</router-link>
+                        </el-menu-item>
                     </el-submenu>
                     <el-menu-item index="/actionlog">操作日志</el-menu-item>
                     <el-menu-item index="/docs">
@@ -62,6 +68,7 @@
         data() {
             return {
                 activeIndex: '/',
+                showMobileMenu: ''
             };
         },
         computed: {
@@ -79,7 +86,17 @@
             },
             logout() {
                 this.$store.dispatch('logout')
-                this.$router.push({path:'/login'})
+                this.$router.push({path: '/login'})
+            },
+            showMenu(e) {
+                console.log(e.target)
+                console.log(e)
+                console.log(e.target.hidden)
+                if (this.showMobileMenu==''){
+                    this.showMobileMenu='display:block;';
+                }else{
+                    this.showMobileMenu='';
+                }
             }
         }
     }

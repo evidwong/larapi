@@ -68,7 +68,11 @@
                                 }
                                 sessionStorage.setItem('userInfo', JSON.stringify(user));
                                 this.$store.dispatch('login');
-                                this.$router.replace({path: '/'});
+                                let redirect = decodeURIComponent(this.$route.query.redirect || '/');
+                                this.$router.push({//你需要接受路由的参数再跳转
+                                    path: redirect
+                                });
+                                // this.$router.replace({path: '/'});
                             }
                         });
                     } else {

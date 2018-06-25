@@ -2,7 +2,7 @@
     <div v-loading="loading">
         <div class="btn-groups">
             <el-row>
-                <el-button @click="dialogFormVisible = true">增加</el-button>
+                <el-button @click="addMerchant">增加</el-button>
                 <el-button type="info" @click="editMerchant">修改</el-button>
                 <el-button type="warning" @click="delayMerchant">延期</el-button>
                 <el-button type="danger" @click="delMerchant">删除</el-button>
@@ -33,7 +33,7 @@
                   @onRefresh="loadData"/>
         </el-row>
 
-        <el-dialog title="增加商户" :visible.sync="dialogFormVisible" :close-on-click-modal="false" width="70%">
+        <el-dialog title="商户配置" :visible.sync="dialogFormVisible" :close-on-click-modal="false" width="70%">
             <el-form :inline="true" :model="formData" class="demo-form-inline" label-width="70px"
                      v-loading="submitLoading">
                 <el-row>
@@ -138,10 +138,10 @@
                     <el-form-item label="授权品牌" class="large_item">
                         <el-select v-model="formData.auth_brand" multiple placeholder="请选择授权品牌" style="width:100%;">
                             <el-option
-                                    v-for="item in options"
-                                    :key="item.value"
-                                    :label="item.label"
-                                    :value="item.value">
+                                    v-for="item in brandConfigs"
+                                    :key="item.id"
+                                    :label="item.brand_name"
+                                    :value="item.id">
                             </el-option>
                         </el-select>
                     </el-form-item>
@@ -164,7 +164,7 @@
         </el-dialog>
 
 
-        <el-dialog title="增加商户" :visible.sync="delayDialogVisible" :close-on-click-modal="false">
+        <el-dialog title="商户配置" :visible.sync="delayDialogVisible" :close-on-click-modal="false">
             <el-form :model="formData" class="demo-form-inline" label-width="70px"
                      v-loading="submitLoading">
                 <el-row>
@@ -193,7 +193,7 @@
 
 </template>
 <script>
-    import {getMerchants, deleteMerchants, getBaseInfo, createMerchants, updateMerchants} from '../../api/api';
+    import {getMerchants, deleteMerchants, getBaseInfos, createMerchants, getBrandConfigs} from '../../api/api';
     import Page from "../../components/Page.vue"
     import area from '../../pca-code.json';
 
@@ -237,6 +237,7 @@
                 formData: globalFormData,
                 formLabelWidth: '120px',
                 options: area,
+                brandConfigs: {},
                 submitLoading: false,
                 delayDialogVisible: false
             }
@@ -257,31 +258,36 @@
                 this.tableData = res.merchants;
                 this.loading = false;
             });
-            getBaseInfo({type: 1}).then(res => {
-                localStorage.companyType = JSON.stringify(res.baseInfos)
+            getBaseInfos({type: 1}).then(res => {
+                localStorage.companyType = JSON.stringify(res.data)
             })
+            getBrandConfigs({}).then(res => {
+                this.brandConfigs = res.data
+            });
         },
         methods: {
             handleSizeChange(val) {
             },
             handleCurrentChange(val) {
             },
-            addMerchants() {
-                console.log(Page.data().currentPage)
+            addMerchant() {
+                this.dialogFormVisible = true;
+                this.formData = Object.assign({}, globalFormData);
             },
             editMerchant() {
-                if (this.tempRow) {
-                    this.tempRow.city = this.tempRow.city == '' ? [] : (this.tempRow.city).split(',');
-                    this.tempRow.auth_time = [];
-                    this.tempRow.auth_time.push(this.tempRow.auth_start_time);
-                    this.tempRow.auth_time.push(this.tempRow.auth_end_time);
-                    this.formData = this.tempRow;
+                if (this.tempRow.hasOwnProperty('id')) {
+                    this.formData = Object.assign({}, this.tempRow);
+                    this.formData.city = this.formData.city == '' ? [] : (this.formData.city).split(',');
+                    this.formData.auth_time = [];
+                    this.formData.auth_time.push(this.formData.auth_start_time);
+                    this.formData.auth_time.push(this.formData.auth_end_time);
+
                     this.dialogFormVisible = true;
                 }
             },
             delayMerchant() {
                 if (this.tempRow) {
-                    this.formData = this.tempRow;
+                    this.formData.assign({}, this.tempRow);
                     this.delayDialogVisible = true;
                 }
             },

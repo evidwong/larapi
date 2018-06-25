@@ -19,6 +19,7 @@ class CreateBaseInfosTable extends Migration
             $table->integer('type');
             $table->tinyInteger('status')->default(1);
             $table->integer('pid')->default(0);
+            $table->integer('is_del')->default(0);
             $table->timestamps();
         });
     }

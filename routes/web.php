@@ -17,7 +17,9 @@ Route::post('getMerchants', 'MerchantsController@getMerchants')->name('merchants
 Route::post('createMerchants', 'MerchantsController@createMerchants')->name('merchants.createMerchants');
 Route::post('deleteMerchants', 'MerchantsController@deleteMerchants')->name('merchants.deleteMerchants');
 Route::post('delayMerchants', 'MerchantsController@delayMerchants')->name('merchants.delayMerchants');
-Route::post('getBaseInfo', 'BaseInfosController@getBaseInfo')->name('baseinfos.getBaseInfo');
+Route::post('getBaseInfos', 'BaseInfosController@getBaseInfos')->name('baseinfos.getBaseInfos');
+Route::post('createBaseInfo', 'BaseInfosController@createBaseInfo')->name('baseinfos.createBaseInfo');
+Route::post('deleteBaseInfo', 'BaseInfosController@deleteBaseInfo')->name('baseinfos.deleteBaseInfo');
 Route::post('getBrands', 'BrandsController@getBrands')->name('brands.getBrands');
 
 Route::post('getBrandConfigs', 'BrandsController@getBrandConfigs')->name('brands.getBrandConfigs');

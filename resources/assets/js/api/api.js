@@ -7,7 +7,11 @@ export const getMerchants = params => { return axios.post(`${base}/getMerchants`
 export const createMerchants = params => { return axios.post(`${base}/createMerchants`, params).then(res => res.data); };
 export const deleteMerchants = params => { return axios.post(`${base}/deleteMerchants`, params).then(res => res.data); };
 export const delayMerchants = params => { return axios.post(`${base}/delayMerchants`, params).then(res => res.data); };
-export const getBaseInfo = params => { return axios.post(`${base}/getBaseInfo`, params).then(res => res.data); };
+
+export const getBaseInfos = params => { return axios.post(`${base}/getBaseInfos`, params).then(res => res.data); };
+export const createBaseInfo = params => { return axios.post(`${base}/createBaseInfo`, params).then(res => res.data); };
+export const deleteBaseInfo = params => { return axios.post(`${base}/deleteBaseInfo`, params).then(res => res.data); };
+
 export const getBrands = params => { return axios.post(`${base}/getBrands`, params).then(res => res.data); };
 export const getBrandConfigs = params => { return axios.post(`${base}/getBrandConfigs`, params).then(res => res.data); };
 
