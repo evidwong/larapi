@@ -20876,7 +20876,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     //_this.$router.replace('/table');
                     _this2.logining = true;
                     //NProgress.start();
-                    var loginParams = { email: _this2.ruleForm.email, passcode: _this2.ruleForm.passcode };
+                    var loginParams = { email: _this2.ruleForm.email, password: _this2.ruleForm.passcode };
                     Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["n" /* requestLogin */])(loginParams).then(function (data) {
                         _this2.logining = false;
                         var msg = data.msg,

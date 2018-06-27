@@ -51,7 +51,7 @@
                         //_this.$router.replace('/table');
                         this.logining = true;
                         //NProgress.start();
-                        var loginParams = {email: this.ruleForm.email, passcode: this.ruleForm.passcode};
+                        var loginParams = {email: this.ruleForm.email, password: this.ruleForm.passcode};
                         requestLogin(loginParams).then(data => {
                             this.logining = false;
                             let {msg, code, user} = data;
