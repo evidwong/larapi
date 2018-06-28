@@ -21,9 +21,9 @@ class CreatePermissionTables extends Migration
             $table->string('guard_name');
             $table->string('title')->nullable();
             $table->string('path')->nullable();
-            $table->string('is_menu')->nullable();
+            $table->tinyInteger('is_menu')->nullable()->default(0);
             $table->string('description')->nullable();
-            $table->integer('pid')->nullable();
+            $table->integer('pid')->nullable()->default(0);
             $table->mediumInteger('sort')->default(0);
             $table->tinyInteger('type')->default(0);
             $table->timestamps();

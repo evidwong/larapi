@@ -54,7 +54,7 @@
                         var loginParams = {email: this.ruleForm.email, password: this.ruleForm.passcode};
                         requestLogin(loginParams).then(data => {
                             this.logining = false;
-                            let {msg, code, user} = data;
+                            let {msg, code, user,menu} = data;
                             if (code !== 0) {
                                 this.$message.error('登录失败，请检查邮箱和密码是否正确');
                             } else {
@@ -67,7 +67,9 @@
                                     localStorage.passcode=this.ruleForm.passcode;
                                 }
                                 sessionStorage.setItem('userInfo', JSON.stringify(user));
+                                sessionStorage.setItem('myMenu', JSON.stringify(menu));
                                 this.$store.dispatch('login');
+                                this.$store.dispatch('setMenu');
                                 let redirect = decodeURIComponent(this.$route.query.redirect || '/');
                                 this.$router.push({//你需要接受路由的参数再跳转
                                     path: redirect

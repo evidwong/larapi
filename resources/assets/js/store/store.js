@@ -5,7 +5,8 @@ Vue.use(Vuex);
 
 const state = {
     isLogined: false,
-    userInfo: JSON.parse(sessionStorage.getItem('userInfo')) || ''
+    userInfo: JSON.parse(sessionStorage.getItem('userInfo')) || '',
+    menu:JSON.parse(sessionStorage.getItem('myMenu')) || [],
 };
 const mutations = {
     LOGIN(state) {
@@ -18,6 +19,11 @@ const mutations = {
     LOGOUT(state) {
         // 这个同理
         state.userInfo = '';
+        state.menu = [];
+
+    },
+    SETMENU(state){
+        state.menu=JSON.parse(sessionStorage.getItem('myMenu'))
     }
 };
 const actions = {
@@ -27,6 +33,9 @@ const actions = {
     // 同样来个logout
     logout ({commit}) {
         commit('LOGOUT')
+    },
+    setMenu({commit}){
+        commit('SETMENU')
     }
 };
 const getters={

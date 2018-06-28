@@ -28,9 +28,9 @@ export default new Router({//定义路由
             },
         },
         {
-            path: '/actionlog',
+            path: '/actionlogs',
             name: '操作日志',
-            component: require('../views/admin/merchants'),
+            component: require('../views/admin/actionlogs'),
             meta : {
                 requireAuth: true,
             },

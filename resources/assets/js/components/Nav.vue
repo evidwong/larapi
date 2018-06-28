@@ -24,7 +24,23 @@
                     <el-menu-item index="/home">
                         <router-link to="/home">个人中心</router-link>
                     </el-menu-item>
-                    <el-menu-item index="/merchants">
+                    <template v-for="menuItem in menu">
+                        <el-menu-item v-bind:index="menuItem.path" :key="menuItem.id" v-if="menuItem.children.length<=0">
+                            <router-link :to="{path:menuItem.path }">{{menuItem.title}}</router-link>
+                        </el-menu-item>
+                        <el-submenu v-bind:index="menuItem.path" :key="menuItem.id" v-else>
+                            <template slot="title">{{menuItem.title}}</template>
+                            <template v-for="childItem in menuItem.children">
+                                <el-menu-item v-bind:index="childItem.path" :key="childItem.id">
+                                    <router-link :to="{ path: childItem.path }">{{childItem.title}}</router-link>
+                                </el-menu-item>
+                            </template>
+                        </el-submenu>
+                    </template>
+
+
+
+                    <!--<el-menu-item index="/merchants">
                         <router-link to="/merchants">商户管理</router-link>
                     </el-menu-item>
                     <el-submenu index="/promise">
@@ -45,7 +61,10 @@
                             <router-link to="/globalset/companytype">公司类型设置</router-link>
                         </el-menu-item>
                     </el-submenu>
-                    <el-menu-item index="/actionlog">操作日志</el-menu-item>
+                    <el-menu-item index="/actionlog">操作日志</el-menu-item>-->
+
+
+
                     <el-menu-item index="/docs">
                         <router-link to="/docs">接口文档</router-link>
                     </el-menu-item>
@@ -74,6 +93,9 @@
         computed: {
             user() {
                 return this.$store.state.userInfo
+            },
+            menu() {
+                return this.$store.state.menu
             }
         },
         created: function () {
@@ -85,17 +107,14 @@
                 console.log(key, keyPath);
             },
             logout() {
-                this.$store.dispatch('logout')
-                this.$router.push({path: '/login'})
+                this.$store.dispatch('logout');
+                this.$router.push({path: '/login'});
             },
             showMenu(e) {
-                console.log(e.target)
-                console.log(e)
-                console.log(e.target.hidden)
-                if (this.showMobileMenu==''){
-                    this.showMobileMenu='display:block;';
-                }else{
-                    this.showMobileMenu='';
+                if (this.showMobileMenu == '') {
+                    this.showMobileMenu = 'display:block;';
+                } else {
+                    this.showMobileMenu = '';
                 }
             }
         }
@@ -134,9 +153,13 @@
     .el-menu {
         background-color: transparent !important;
     }
+    #app-navbar-collapse .el-menu li{
+        padding: 0;
+    }
 
     .el-menu a {
         display: block;
+        padding: 0 20px;
     }
 
     .el-menu--horizontal {
