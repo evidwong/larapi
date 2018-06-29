@@ -24,43 +24,43 @@ class SeedRolesAndPermissionsData extends Migration
         $permission = Permission::create(['name' => 'manage_permission', 'title' => '权限管理', 'path' => '/promise', 'is_menu' => 1]);
 
         // 角色权限
-        $manage_roles = Permission::create(['name' => 'manage_roles', 'title' => '角色管理', 'path' => '/promise/roles', 'pid' => $permission->id, 'is_menu' => 1]);
-        Permission::create(['name' => 'create_update_role', 'title' => '添加修改角色', 'pid' => $manage_roles->id]);
-        Permission::create(['name' => 'delete_role', 'title' => '删除角色', 'pid' => $manage_roles->id]);
+        $manage_roles = Permission::create(['name' => 'manage_roles', 'title' => '角色管理', 'path' => '/promise/roles', 'pid' => $permission->id, 'is_menu' => 1,'type'=>1]);
+        Permission::create(['name' => 'create_update_role', 'title' => '添加修改角色', 'pid' => $manage_roles->id,'type'=>2]);
+        Permission::create(['name' => 'delete_role', 'title' => '删除角色', 'pid' => $manage_roles->id,'type'=>2]);
 
         // 用户权限
-        $manage_users = Permission::create(['name' => 'manage_users', 'title' => '用户管理', 'path' => '/promise/users', 'is_menu' => 1,'pid'=>$permission->id]);
-        Permission::create(['name' => 'create_update_user', 'title' => '添加修改用户', 'pid' => $manage_users->id]);
-        Permission::create(['name' => 'delete_user', 'title' => '删除用户', 'pid' => $manage_users->id]);
+        $manage_users = Permission::create(['name' => 'manage_users', 'title' => '用户管理', 'path' => '/promise/users', 'is_menu' => 1,'pid'=>$permission->id,'type'=>1]);
+        Permission::create(['name' => 'create_update_user', 'title' => '添加修改用户', 'pid' => $manage_users->id,'type'=>2]);
+        Permission::create(['name' => 'delete_user', 'title' => '删除用户', 'pid' => $manage_users->id,'type'=>2]);
 
 
         // 节点权限
-        $manage_nodes=Permission::create(['name' => 'manage_nodes', 'title' => '节点管理', 'path' => '/promise/nodes', 'is_menu' => 1,'pid'=>$permission->id]);
-        Permission::create(['name' => 'create_update_node', 'title' => '添加修改节点', 'pid' => $manage_nodes->id]);
-        Permission::create(['name' => 'delete_node', 'title' => '删除节点', 'pid' => $manage_nodes->id]);
+        $manage_nodes=Permission::create(['name' => 'manage_nodes', 'title' => '节点管理', 'path' => '/promise/nodes', 'is_menu' => 1,'pid'=>$permission->id,'type'=>1]);
+        Permission::create(['name' => 'create_update_node', 'title' => '添加修改节点', 'pid' => $manage_nodes->id,'type'=>2]);
+        Permission::create(['name' => 'delete_node', 'title' => '删除节点', 'pid' => $manage_nodes->id,'type'=>2]);
 
         // 商户管理
         $merchant=Permission::create(['name' => 'manage_merchants', 'title' => '商户管理', 'path' => '/merchants', 'is_menu' => 1]);
-        Permission::create(['name' => 'create_update_merchant', 'title' => '添加修改商户','pid'=>$merchant->id]);
-        Permission::create(['name' => 'delete_merchant', 'title' => '删除商户','pid'=>$merchant->id]);
+        Permission::create(['name' => 'create_update_merchant', 'title' => '添加修改商户','pid'=>$merchant->id,'type'=>2]);
+        Permission::create(['name' => 'delete_merchant', 'title' => '删除商户','pid'=>$merchant->id,'type'=>2]);
 
         //品牌设置
         $globalset=Permission::create(['name' => 'manage_globalset', 'title' => '通用设置', 'path' => '/globalset', 'is_menu' => 1]);
-        $globalset_brands=Permission::create(['name' => 'manage_globalset_brands', 'title' => '品牌设置', 'path' => '/globalset/brand', 'is_menu' => 1,'pid'=>$globalset->id]);
-        Permission::create(['name' => 'create_update_brand', 'title' => '添加修改品牌','pid'=>$globalset_brands->id]);
-        Permission::create(['name' => 'delete_brand', 'title' => '删除品牌','pid'=>$globalset_brands->id]);
+        $globalset_brands=Permission::create(['name' => 'manage_globalset_brands', 'title' => '品牌设置', 'path' => '/globalset/brand', 'is_menu' => 1,'pid'=>$globalset->id,'type'=>1]);
+        Permission::create(['name' => 'create_update_brand', 'title' => '添加修改品牌','pid'=>$globalset_brands->id,'type'=>2]);
+        Permission::create(['name' => 'delete_brand', 'title' => '删除品牌','pid'=>$globalset_brands->id,'type'=>2]);
 
-        $globalset_vins=Permission::create(['name' => 'manage_globalset_vins', 'title' => '车架号设置', 'path' => '/globalset/vin', 'is_menu' => 1,'pid'=>$globalset->id]);
-        Permission::create(['name' => 'create_update_vin', 'title' => '添加修改车架号','pid'=>$globalset_vins->id]);
-        Permission::create(['name' => 'delete_vin', 'title' => '删除车架号','pid'=>$globalset_vins->id]);
+        $globalset_vins=Permission::create(['name' => 'manage_globalset_vins', 'title' => '车架号设置', 'path' => '/globalset/vin', 'is_menu' => 1,'pid'=>$globalset->id,'type'=>1]);
+        Permission::create(['name' => 'create_update_vin', 'title' => '添加修改车架号','pid'=>$globalset_vins->id,'type'=>2]);
+        Permission::create(['name' => 'delete_vin', 'title' => '删除车架号','pid'=>$globalset_vins->id,'type'=>2]);
 
-        $globalset_companytypes=Permission::create(['name' => 'manage_globalset_companytypes', 'title' => '公司类型设置', 'path' => '/globalset/companytype', 'is_menu' => 1,'pid'=>$globalset->id]);
-        Permission::create(['name' => 'create_update_companytype', 'title' => '添加修改公司类型','pid'=>$globalset_companytypes->id]);
-        Permission::create(['name' => 'delete_companytype', 'title' => '删除公司类型','pid'=>$globalset_companytypes->id]);
+        $globalset_companytypes=Permission::create(['name' => 'manage_globalset_companytypes', 'title' => '公司类型设置', 'path' => '/globalset/companytype', 'is_menu' => 1,'pid'=>$globalset->id,'type'=>1]);
+        Permission::create(['name' => 'create_update_companytype', 'title' => '添加修改公司类型','pid'=>$globalset_companytypes->id,'type'=>2]);
+        Permission::create(['name' => 'delete_companytype', 'title' => '删除公司类型','pid'=>$globalset_companytypes->id,'type'=>2]);
 
         $manage_actionlogs=Permission::create(['name' => 'manage_actionlogs', 'title' => '操作日志', 'path' => '/actionlogs', 'is_menu' => 1]);
-        Permission::create(['name' => 'show_actionlog', 'title' => '查看日志','pid'=>$manage_actionlogs->id]);
-        Permission::create(['name' => 'export_actionlog', 'title' => '导出日志','pid'=>$manage_actionlogs->id]);
+        Permission::create(['name' => 'show_actionlog', 'title' => '查看日志','pid'=>$manage_actionlogs->id,'type'=>2]);
+        Permission::create(['name' => 'export_actionlog', 'title' => '导出日志','pid'=>$manage_actionlogs->id,'type'=>2]);
 
         // 创建角色，并赋予权限
         $super = Role::create(['name' => 'super', 'title' => '超级管理员']);

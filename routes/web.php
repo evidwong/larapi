@@ -29,3 +29,11 @@ Route::post('deleteBrandConfig', 'BrandsController@deleteBrandConfig')->name('br
 Route::post('getVinConfigs', 'VinsController@getVinConfigs')->name('Vins.getVinConfigs');
 Route::post('createVinConfig', 'VinsController@createVinConfig')->name('Vins.createVinConfig');
 Route::post('deleteVinConfig', 'VinsController@deleteVinConfig')->name('Vins.deleteVinConfig');
+
+Route::post('getNodes', 'PermisesController@getNodes')->name('Vins.getNodes');
+Route::post('createNode', 'PermisesController@createNode')->name('Vins.createNode');
+Route::post('deleteNode', 'PermisesController@deleteNode')->name('Vins.deleteNode');
+
+Route::post('getRoles', 'PermisesController@getRoles')->name('Vins.getRoles');
+Route::post('createRole', 'PermisesController@createRole')->name('Vins.createRole');
+Route::post('deleteRole', 'PermisesController@deleteRole')->name('Vins.deleteRole');
