@@ -26,14 +26,18 @@ Route::post('getBrandConfigs', 'BrandsController@getBrandConfigs')->name('brands
 Route::post('createBrandConfig', 'BrandsController@createBrandConfig')->name('brands.createBrandConfig');
 Route::post('deleteBrandConfig', 'BrandsController@deleteBrandConfig')->name('brands.deleteBrandConfig');
 
-Route::post('getVinConfigs', 'VinsController@getVinConfigs')->name('Vins.getVinConfigs');
-Route::post('createVinConfig', 'VinsController@createVinConfig')->name('Vins.createVinConfig');
-Route::post('deleteVinConfig', 'VinsController@deleteVinConfig')->name('Vins.deleteVinConfig');
+Route::post('getVinConfigs', 'VinsController@getVinConfigs')->name('vins.getVinConfigs');
+Route::post('createVinConfig', 'VinsController@createVinConfig')->name('vins.createVinConfig');
+Route::post('deleteVinConfig', 'VinsController@deleteVinConfig')->name('vins.deleteVinConfig');
 
-Route::post('getNodes', 'PermisesController@getNodes')->name('Vins.getNodes');
-Route::post('createNode', 'PermisesController@createNode')->name('Vins.createNode');
-Route::post('deleteNode', 'PermisesController@deleteNode')->name('Vins.deleteNode');
+Route::post('getNodes', 'PermisesController@getNodes')->name('permises.getNodes');
+Route::post('createNode', 'PermisesController@createNode')->name('permises.createNode');
+Route::post('deleteNode', 'PermisesController@deleteNode')->name('permises.deleteNode');
 
-Route::post('getRoles', 'PermisesController@getRoles')->name('Vins.getRoles');
-Route::post('createRole', 'PermisesController@createRole')->name('Vins.createRole');
-Route::post('deleteRole', 'PermisesController@deleteRole')->name('Vins.deleteRole');
+Route::post('getRoles', 'PermisesController@getRoles')->name('permises.getRoles');
+Route::post('createRole', 'PermisesController@createRole')->name('permises.createRole');
+Route::post('deleteRole', 'PermisesController@deleteRole')->name('permises.deleteRole');
+
+Route::post('getUsers', 'UsersController@getRoles')->name('users.getRoles');
+Route::post('createUser', 'UsersController@createRole')->name('users.createRole');
+Route::post('deleteUser', 'UsersController@deleteRole')->name('users.deleteRole');

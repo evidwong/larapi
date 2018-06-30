@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','is_admin','role_id','cid'
     ];
 
     /**
@@ -27,5 +27,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-    // public function 
+     public function merchant(){
+         return $this->belongsTo(Merchant::class,'cid');
+     }
 }
