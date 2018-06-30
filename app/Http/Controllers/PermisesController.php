@@ -29,7 +29,7 @@ class PermisesController extends Controller
 
                 return $permise;
             })->toArray();
-            array_unshift($rows,['id'=>0,'value'=>0,'label'=>'顶级']);
+            array_unshift($rows, ['id' => 0, 'value' => 0, 'label' => '顶级']);
         }
 
         return response()->json(['code' => 0, 'data' => $rows, 'total' => $total]);
@@ -38,12 +38,15 @@ class PermisesController extends Controller
     public function createNode(Request $request)
     {
         $data = $request->all();
-        if ($data['id']) {
+        $data = array_filter($data);
+        if (isset($data['pid'])) {
+            $data['pid'] = array_pop($data['pid']);
+        }
+        if (isset($data['id'])) {
             $node = Permission::find($data['id']);
             $node->update($data);
             return response()->json(['code' => 0, 'msg' => '修改成功']);
         } else {
-            unset($data['id']);
             Permission::create($data);
             return response()->json(['code' => 0, 'msg' => '添加成功']);
         }
@@ -67,12 +70,12 @@ class PermisesController extends Controller
     public function createRole(Request $request)
     {
         $data = $request->all();
-        if ($data['id']) {
+        $data = array_filter($data);
+        if (isset($data['id'])) {
             $role = Role::find($data['id']);
             $role->update($data);
             return response()->json(['code' => 0, 'msg' => '修改成功']);
         } else {
-            unset($data['id']);
             Role::create($data);
             return response()->json(['code' => 0, 'msg' => '添加成功']);
         }

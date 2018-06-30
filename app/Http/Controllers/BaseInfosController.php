@@ -30,12 +30,12 @@ class BaseInfosController extends Controller
     public function createBaseInfo(Request $request)
     {
         $data = $request->all();
-        if ($data['id']) {
+        $data = array_filter($data);
+        if (isset($data['id'])) {
             $baseinfo = BaseInfo::find($data['id']);
             $baseinfo->update($data);
             return response()->json(['code' => 0, 'msg' => '修改成功']);
         } else {
-            unset($data['id']);
             BaseInfo::create($data);
             return response()->json(['code' => 0, 'msg' => '添加成功']);
         }

@@ -29,3 +29,7 @@ export const deleteNode = params => { return axios.post(`${base}/deleteNode`, pa
 export const getRoles = params => { return axios.post(`${base}/getRoles`, params).then(res => res.data); };
 export const createRole = params => { return axios.post(`${base}/createRole`, params).then(res => res.data); };
 export const deleteRole = params => { return axios.post(`${base}/deleteRole`, params).then(res => res.data); };
+
+export const getUsers = params => { return axios.post(`${base}/getUsers`, params).then(res => res.data); };
+export const createUser = params => { return axios.post(`${base}/createUser`, params).then(res => res.data); };
+export const deleteUser = params => { return axios.post(`${base}/deleteUser`, params).then(res => res.data); };

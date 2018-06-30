@@ -324,6 +324,7 @@
                     this.formData = globalFormData;
                     this.submitLoading = false;
                     this.dialogFormVisible = false;
+                    this.tempRow = {};
                     this.$message({
                         message: res.msg,
                         type: 'success',
@@ -369,6 +370,7 @@
                             type: 'warning'
                         });
                     } else {
+                        this.tempRow = {};
                         if (this.tableData.length == 1 && this.currentPage > 1) {
                             this.currentPage--
                         }

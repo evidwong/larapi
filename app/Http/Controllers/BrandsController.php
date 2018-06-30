@@ -29,13 +29,13 @@ class BrandsController extends Controller
 
     public function getBrandConfigs(Request $request)
     {
-        $total = Brand::where('is_del',0)->count();
+        $total = Brand::where('is_del', 0)->count();
         $pageSize = $request->currentPageSize;
         $page = $request->currentPage;
-        if ($page){
-            $rows = Brand::where('is_del',0)->offset(($page - 1) * $pageSize)->limit($pageSize)->get()->toArray();
-        }else{
-            $rows = Brand::where('is_del',0)->get()->toArray();
+        if ($page) {
+            $rows = Brand::where('is_del', 0)->offset(($page - 1) * $pageSize)->limit($pageSize)->get()->toArray();
+        } else {
+            $rows = Brand::where('is_del', 0)->get()->toArray();
         }
 
         return response()->json(['code' => 0, 'data' => $rows, 'total' => $total]);
@@ -44,7 +44,8 @@ class BrandsController extends Controller
     public function createBrandConfig(Request $request)
     {
         $data = $request->all();
-        if ($data['id']) {
+        $data = array_filter($data);
+        if (isset($data['id'])) {
             $brand = Brand::find($data['id']);
             $brand->update($data);
             return response()->json(['code' => 0, 'msg' => '修改成功']);

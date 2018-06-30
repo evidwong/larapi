@@ -28,6 +28,7 @@ class MerchantsController extends Controller
 
 
         $data = $request->all();
+        $data=array_filter($data);
         $data['auth_start_time'] = (isset($data['auth_time']) && $data['auth_time']) ? $data['auth_time'][0] : '';
         $data['auth_end_time'] = (isset($data['auth_time']) && $data['auth_time']) ? $data['auth_time'][1] : '';
         $data['city'] = (isset($data['city']) && $data['city']) ? implode(',', $data['city']) : '';
@@ -35,13 +36,12 @@ class MerchantsController extends Controller
         if (isset($data['auth_time'])) {
             unset($data['auth_time']);
         }
-        if ($data['id']) {
+        if (isset($data['id'])) {
             $merchant = Merchant::find($data['id']);
 //            dd($data);
             $merchant->update($data);
             return response()->json(['code' => 0, 'msg' => '修改成功']);
         } else {
-            unset($data['id']);
             Merchant::create($data);
             return response()->json(['code' => 0, 'msg' => '添加成功']);
         }

@@ -35,6 +35,7 @@ class CreatePermissionTables extends Migration
             $table->string('guard_name');
             $table->string('title')->nullable();
             $table->string('description')->nullable();
+            $table->integer('pid')->nullable()->default(0);
             $table->timestamps();
         });
 
