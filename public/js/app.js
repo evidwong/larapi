@@ -24948,7 +24948,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -24980,7 +24979,8 @@ var globalFormData = {
             formLabelWidth: '120px',
             submitLoading: false,
             parentId: [],
-            permises: [],
+            roles: [],
+            role_id: [],
             types: [{ value: 0, label: '分类' }, { value: 1, label: '模块' }, { value: 2, label: '操作' }]
         };
     },
@@ -24995,149 +24995,27 @@ var globalFormData = {
             _this.tableData = res.data;
             _this.loading = false;
         });
-        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["u" /* getUsers */])({}).then(function (res) {
-
-            _this.permises = res.data;
+        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["t" /* getRoles */])({}).then(function (res) {
+            _this.roles = res.data;
         });
     },
 
     methods: {
-        format_is_menu: function format_is_menu(row, column, cellValue, index) {
-            return cellValue == 0 ? '否' : '是';
-        },
-        format_type: function format_type(row, column, cellValue, index) {
-            var t = '';
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
-
-            try {
-                for (var _iterator = this.types[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var type = _step.value;
-
-                    if (cellValue == type.value) {
-                        t = type.label;
-                        break;
-                    }
-                }
-            } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
-                    }
-                } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
-                    }
-                }
-            }
-
-            return t;
-        },
         selectParent: function selectParent(val) {
             console.log(val);
-            this.formData.pid = val.pop();
+            // this.role_id=val;
+            // this.formData.role_id = val.pop()
         },
         add: function add() {
             this.dialogFormVisible = true;
+            this.role_id = [];
             this.formData = Object.assign({}, globalFormData);
         },
         Edit: function Edit() {
             if (this.tempRow.hasOwnProperty('id')) {
                 this.formData = Object.assign({}, this.tempRow);
-                this.formData.is_menu = this.formData.is_menu + '';
-                // this.formData.type = this.formData.type+''
                 console.log(this.formData);
                 var that = this;
-                var _iteratorNormalCompletion2 = true;
-                var _didIteratorError2 = false;
-                var _iteratorError2 = undefined;
-
-                try {
-                    first: for (var _iterator2 = this.permises[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                        var per = _step2.value;
-
-                        if (per.id == that.formData.pid) {
-                            that.parentId = [per.id];
-                            break first;
-                        }
-                        if (per.hasOwnProperty('children') && per.children.length > 0) {
-                            var _iteratorNormalCompletion3 = true;
-                            var _didIteratorError3 = false;
-                            var _iteratorError3 = undefined;
-
-                            try {
-                                for (var _iterator3 = per.children[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                                    var childPer = _step3.value;
-
-                                    if (childPer.id == that.formData.pid) {
-                                        that.parentId = [per.id, childPer.id];
-                                        break first;
-                                    }
-                                    if (childPer.hasOwnProperty('children') && childPer.children.length > 0) {
-                                        var _iteratorNormalCompletion4 = true;
-                                        var _didIteratorError4 = false;
-                                        var _iteratorError4 = undefined;
-
-                                        try {
-                                            for (var _iterator4 = childPer.children[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-                                                var subChild = _step4.value;
-
-                                                if (subChild.id == that.formData.pid) {
-                                                    that.parentId = [per.id, childPer.id, subChild.id];
-                                                    break first;
-                                                }
-                                            }
-                                        } catch (err) {
-                                            _didIteratorError4 = true;
-                                            _iteratorError4 = err;
-                                        } finally {
-                                            try {
-                                                if (!_iteratorNormalCompletion4 && _iterator4.return) {
-                                                    _iterator4.return();
-                                                }
-                                            } finally {
-                                                if (_didIteratorError4) {
-                                                    throw _iteratorError4;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            } catch (err) {
-                                _didIteratorError3 = true;
-                                _iteratorError3 = err;
-                            } finally {
-                                try {
-                                    if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                                        _iterator3.return();
-                                    }
-                                } finally {
-                                    if (_didIteratorError3) {
-                                        throw _iteratorError3;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                } catch (err) {
-                    _didIteratorError2 = true;
-                    _iteratorError2 = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                            _iterator2.return();
-                        }
-                    } finally {
-                        if (_didIteratorError2) {
-                            throw _iteratorError2;
-                        }
-                    }
-                }
-
                 console.log(that.parentId);
                 this.dialogFormVisible = true;
             } else {
@@ -25148,6 +25026,9 @@ var globalFormData = {
             var _this2 = this;
 
             this.submitLoading = true;
+            if (this.role_id.length > 0) {
+                this.formData.role_id = this.role_id;
+            }
             Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["f" /* createUser */])(this.formData).then(function (res) {
                 _this2.formData = globalFormData;
                 _this2.submitLoading = false;
@@ -25352,18 +25233,18 @@ var render = function() {
                 [
                   _c("el-cascader", {
                     attrs: {
-                      options: _vm.permises,
+                      options: _vm.roles,
                       "show-all-levels": false,
-                      "change-on-select": "",
-                      placeholder: "请选择上级"
+                      "change-on-select": true,
+                      placeholder: "请选择"
                     },
                     on: { change: _vm.selectParent },
                     model: {
-                      value: _vm.parentId,
+                      value: _vm.role_id,
                       callback: function($$v) {
-                        _vm.parentId = $$v
+                        _vm.role_id = $$v
                       },
-                      expression: "parentId"
+                      expression: "role_id"
                     }
                   })
                 ],
@@ -25393,11 +25274,11 @@ var render = function() {
                 [
                   _c("el-input", {
                     model: {
-                      value: _vm.formData.title,
+                      value: _vm.formData.email,
                       callback: function($$v) {
-                        _vm.$set(_vm.formData, "title", $$v)
+                        _vm.$set(_vm.formData, "email", $$v)
                       },
-                      expression: "formData.title"
+                      expression: "formData.email"
                     }
                   })
                 ],
@@ -25410,11 +25291,11 @@ var render = function() {
                 [
                   _c("el-input", {
                     model: {
-                      value: _vm.formData.path,
+                      value: _vm.formData.password,
                       callback: function($$v) {
-                        _vm.$set(_vm.formData, "path", $$v)
+                        _vm.$set(_vm.formData, "password", $$v)
                       },
-                      expression: "formData.path"
+                      expression: "formData.password"
                     }
                   })
                 ],

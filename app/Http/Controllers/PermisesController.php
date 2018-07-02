@@ -63,7 +63,24 @@ class PermisesController extends Controller
         $total = Role::count();
         $pageSize = $request->currentPageSize;
         $page = $request->currentPage;
-        $rows = Role::offset(($page - 1) * $pageSize)->limit($pageSize)->get()->toArray();
+        if ($page) {
+            $rows = Role::offset(($page - 1) * $pageSize)->limit($pageSize)->get()->toArray();
+        } else {
+            $total = 0;
+            $rows = Role::where('pid', 0)->get()->map(function ($role) {
+                $role['value'] = $role['id'];
+                $role['label'] = $role['title'];
+                $role['children'] = Role::where('pid', $role->id)->get()->map(function ($child) {
+                    $child['value'] = $child['id'];
+                    $child['label'] = $child['title'];
+                    return $child;
+                })->toArray();
+                if (!$role['children']) {
+//                    unset($role['children']);
+                }
+                return $role;
+            })->toArray();
+        }
         return response()->json(['code' => 0, 'data' => $rows, 'total' => $total]);
     }
 

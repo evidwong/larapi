@@ -25,13 +25,12 @@
         <el-dialog title="节点设置" :visible.sync="dialogFormVisible" :close-on-click-modal="false">
             <el-form :model="formData" v-loading="submitLoading" label-width="100px">
                 <el-form-item label="角色">
-
                     <el-cascader
-                            :options="permises"
+                            :options="roles"
                             :show-all-levels="false"
-                            v-model="parentId"
-                            change-on-select
-                            placeholder="请选择上级"
+                            v-model="role_id"
+                            :change-on-select="true"
+                            placeholder="请选择"
                             @change="selectParent"
                     ></el-cascader>
                 </el-form-item>
@@ -39,10 +38,10 @@
                     <el-input v-model="formData.name"/>
                 </el-form-item>
                 <el-form-item label="Email">
-                    <el-input v-model="formData.title"/>
+                    <el-input v-model="formData.email"/>
                 </el-form-item>
                 <el-form-item label="密码">
-                    <el-input v-model="formData.path"/>
+                    <el-input v-model="formData.password"/>
                 </el-form-item>
                 <el-form-item>
                     <el-button type="primary" @click="submitForm">提交</el-button>
@@ -55,7 +54,7 @@
 
 </template>
 <script>
-    import {getUsers, createUser, deleteUser} from '../../../api/api';
+    import {getUsers, createUser, deleteUser, getRoles} from '../../../api/api';
     import Page from "../../../components/Page.vue"
 
     var globalFormData = {
@@ -85,7 +84,8 @@
                 formLabelWidth: '120px',
                 submitLoading: false,
                 parentId: [],
-                permises: [],
+                roles: [],
+                role_id: [],
                 types: [
                     {value: 0, label: '分类'},
                     {value: 1, label: '模块'},
@@ -101,64 +101,26 @@
                 this.tableData = res.data;
                 this.loading = false;
             });
-            getUsers({}).then(res => {
-
-                this.permises = res.data
+            getRoles({}).then(res => {
+                this.roles = res.data
             })
         },
         methods: {
-            format_is_menu(row, column, cellValue, index) {
-                return cellValue == 0 ? '否' : '是';
-            },
-            format_type(row, column, cellValue, index) {
-                let t = '';
-                for (let type of this.types) {
-                    if (cellValue == type.value) {
-                        t = type.label;
-                        break;
-                    }
-                }
-                return t;
-            },
             selectParent(val) {
                 console.log(val)
-                this.formData.pid = val.pop()
+                // this.role_id=val;
+                // this.formData.role_id = val.pop()
             },
             add() {
                 this.dialogFormVisible = true;
+                this.role_id = []
                 this.formData = Object.assign({}, globalFormData);
             },
             Edit() {
                 if (this.tempRow.hasOwnProperty('id')) {
                     this.formData = Object.assign({}, this.tempRow);
-                    this.formData.is_menu = this.formData.is_menu + '';
-                    // this.formData.type = this.formData.type+''
                     console.log(this.formData);
                     let that = this;
-                    first:
-                        for (let per of this.permises) {
-                            if (per.id == that.formData.pid) {
-                                that.parentId = [per.id];
-                                break first;
-                            }
-                            if (per.hasOwnProperty('children') && per.children.length > 0) {
-                                for (let childPer of per.children) {
-                                    if (childPer.id == that.formData.pid) {
-                                        that.parentId = [per.id, childPer.id];
-                                        break first;
-                                    }
-                                    if (childPer.hasOwnProperty('children') && childPer.children.length > 0) {
-                                        for (let subChild of childPer.children) {
-                                            if (subChild.id == that.formData.pid) {
-                                                that.parentId = [per.id, childPer.id, subChild.id];
-                                                break first;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-
                     console.log(that.parentId)
                     this.dialogFormVisible = true;
                 } else {
@@ -167,6 +129,9 @@
             },
             submitForm() {
                 this.submitLoading = true;
+                if (this.role_id.length > 0) {
+                    this.formData.role_id = this.role_id;
+                }
                 createUser(this.formData).then(res => {
                     this.formData = globalFormData;
                     this.submitLoading = false;
