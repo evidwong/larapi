@@ -9,14 +9,9 @@
         </div>
         <el-table :data="tableData" border style="width: auto" @row-click="clickTableRow" height="500px">
             <el-table-column prop="id" label="ID" show-overflow-tooltip width="50px"/>
-            <el-table-column prop="title" label="标题"/>
-            <el-table-column prop="name" label="标识"/>
-            <el-table-column prop="guard_name" label="分组标识"/>
-            <el-table-column prop="path" label="路径"/>
-            <el-table-column prop="sort" label="排序"/>
-            <el-table-column prop="type" :formatter="format_type" label="类型"/>
-            <el-table-column prop="is_menu" :formatter="format_is_menu" label="是否菜单"/>
-            <el-table-column prop="description" label="描述"/>
+            <el-table-column prop="name" label="名称"/>
+            <el-table-column prop="email" label="邮箱"/>
+            <el-table-column prop="role_id" label="路径"/>
             <el-table-column prop="created_at" label="创建日期"/>
             <el-table-column prop="updated_at" label="创建日期"/>
         </el-table>
@@ -29,7 +24,7 @@
 
         <el-dialog title="节点设置" :visible.sync="dialogFormVisible" :close-on-click-modal="false">
             <el-form :model="formData" v-loading="submitLoading" label-width="100px">
-                <el-form-item label="上级">
+                <el-form-item label="角色">
 
                     <el-cascader
                             :options="permises"
@@ -40,39 +35,15 @@
                             @change="selectParent"
                     ></el-cascader>
                 </el-form-item>
-                <el-form-item label="标识">
+                <el-form-item label="名称">
                     <el-input v-model="formData.name"/>
                 </el-form-item>
-                <el-form-item label="分组标识">
-                    <el-input v-model="formData.guard_name"/>
-                </el-form-item>
-                <el-form-item label="标题">
+                <el-form-item label="Email">
                     <el-input v-model="formData.title"/>
                 </el-form-item>
-                <el-form-item label="路径">
+                <el-form-item label="密码">
                     <el-input v-model="formData.path"/>
                 </el-form-item>
-                <el-form-item label="是否菜单">
-                    <el-radio v-model="formData.is_menu" label="0" border>否</el-radio>
-                    <el-radio v-model="formData.is_menu" label="1" border>是</el-radio>
-                </el-form-item>
-                <el-form-item label="排序">
-                    <el-input v-model="formData.sort"/>
-                </el-form-item>
-                <el-form-item label="类型">
-                    <el-select v-model="formData.type" placeholder="请选择">
-                        <el-option
-                                v-for="item in types"
-                                :key="item.value"
-                                :label="item.label"
-                                :value="item.value">
-                        </el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="描述">
-                    <el-input type="textarea" v-model="formData.description"/>
-                </el-form-item>
-
                 <el-form-item>
                     <el-button type="primary" @click="submitForm">提交</el-button>
                     <el-button @click="dialogFormVisible = false">取消</el-button>
@@ -84,20 +55,17 @@
 
 </template>
 <script>
-    import {getNodes, createNode, deleteNode} from '../../../api/api';
+    import {getUsers, createUser, deleteUser} from '../../../api/api';
     import Page from "../../../components/Page.vue"
 
     var globalFormData = {
         id: '',
         name: '',
-        guard_name: '',
-        title: '',
-        path: '',
-        sort: 0,
-        type: 1,
-        pid: 0,
-        is_menu: "0",
-        description: ''
+        email: '',
+        password: '',
+        is_admin: '',
+        role_id: 0,
+        cid: 1,
     };
     export default {
         components: {

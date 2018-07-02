@@ -12189,30 +12189,30 @@ function setStyle(element, styleName, value) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return requestLogin; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return getMerchants; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "w", function() { return requestLogin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return getMerchants; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return createMerchants; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return deleteMerchants; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return deleteMerchants; });
 /* unused harmony export delayMerchants */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return getBaseInfos; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return getBaseInfos; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return createBaseInfo; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return deleteBaseInfo; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return getBrands; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return getBrandConfigs; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return deleteBaseInfo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return getBrands; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return getBrandConfigs; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return createBrandConfig; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return deleteBrandConfig; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return getVinConfigs; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return createVinConfig; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return deleteVinConfig; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return getNodes; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return deleteBrandConfig; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return getVinConfigs; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return createVinConfig; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return deleteVinConfig; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return getNodes; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return createNode; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return deleteNode; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return getRoles; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return deleteNode; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return getRoles; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return createRole; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return deleteRole; });
-/* unused harmony export getUsers */
-/* unused harmony export createUser */
-/* unused harmony export deleteUser */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return deleteRole; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return getUsers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return createUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return deleteUser; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 
@@ -17717,7 +17717,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
             requireAuth: true
         }
     }, {
-        path: '/promiss/users',
+        path: '/promise/users',
         name: '用户管理',
         component: __webpack_require__(140),
         meta: {
@@ -20883,7 +20883,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     _this2.logining = true;
                     //NProgress.start();
                     var loginParams = { email: _this2.ruleForm.email, password: _this2.ruleForm.passcode };
-                    Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["t" /* requestLogin */])(loginParams).then(function (data) {
+                    Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["w" /* requestLogin */])(loginParams).then(function (data) {
                         _this2.logining = false;
                         var msg = data.msg,
                             code = data.code,
@@ -22283,15 +22283,15 @@ var globalFormData = {
         var _this = this;
 
         var params = { currentPage: this.currentPage, currentPageSize: this.currentPageSize };
-        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["p" /* getMerchants */])(params).then(function (res) {
+        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["r" /* getMerchants */])(params).then(function (res) {
             _this.totalPage = res.total;
             _this.tableData = res.merchants;
             _this.loading = false;
         });
-        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["m" /* getBaseInfos */])({ type: 1 }).then(function (res) {
+        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["o" /* getBaseInfos */])({ type: 1 }).then(function (res) {
             localStorage.companyType = JSON.stringify(res.data);
         });
-        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["n" /* getBrandConfigs */])({}).then(function (res) {
+        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["p" /* getBrandConfigs */])({}).then(function (res) {
             _this.brandConfigs = res.data;
         });
     },
@@ -22378,7 +22378,7 @@ var globalFormData = {
             var _this4 = this;
 
             this.loading = true;
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["p" /* getMerchants */])(params).then(function (res) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["r" /* getMerchants */])(params).then(function (res) {
                 _this4.totalPage = res.total;
                 _this4.currentPage = params.currentPage;
                 _this4.currentPageSize = params.currentPageSize;
@@ -22399,7 +22399,7 @@ var globalFormData = {
                 this.$message.error('请选择要删除的记录');
                 return;
             }
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["i" /* deleteMerchants */])({ id: this.tempRow.id }).then(function (res) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["j" /* deleteMerchants */])({ id: this.tempRow.id }).then(function (res) {
                 if (res.code != 0) {
                     _this5.$message({
                         message: '删除失败',
@@ -23563,12 +23563,12 @@ var globalFormData = {
         var _this = this;
 
         var params = { currentPage: this.currentPage, currentPageSize: this.currentPageSize, type: 1 };
-        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["r" /* getRoles */])(params).then(function (res) {
+        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["t" /* getRoles */])(params).then(function (res) {
             _this.totalPage = res.total;
             _this.tableData = res.data;
             _this.loading = false;
         });
-        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["r" /* getRoles */])({}).then(function (res) {
+        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["t" /* getRoles */])({}).then(function (res) {
 
             _this.roles = res.data;
         });
@@ -23652,7 +23652,7 @@ var globalFormData = {
             var _this3 = this;
 
             this.loading = true;
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["r" /* getRoles */])(params).then(function (res) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["t" /* getRoles */])(params).then(function (res) {
                 _this3.totalPage = res.total;
                 _this3.currentPage = params.currentPage;
                 _this3.currentPageSize = params.currentPageSize;
@@ -23670,7 +23670,7 @@ var globalFormData = {
                 this.$message.error('请选择要删除的记录');
                 return;
             }
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["k" /* deleteRole */])({ id: this.tempRow.id }).then(function (res) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["l" /* deleteRole */])({ id: this.tempRow.id }).then(function (res) {
                 if (res.code != 0) {
                     _this4.$message({
                         message: '删除失败',
@@ -24178,12 +24178,12 @@ var globalFormData = {
         var _this = this;
 
         var params = { currentPage: this.currentPage, currentPageSize: this.currentPageSize, type: 1 };
-        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["q" /* getNodes */])(params).then(function (res) {
+        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["s" /* getNodes */])(params).then(function (res) {
             _this.totalPage = res.total;
             _this.tableData = res.data;
             _this.loading = false;
         });
-        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["q" /* getNodes */])({}).then(function (res) {
+        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["s" /* getNodes */])({}).then(function (res) {
 
             _this.permises = res.data;
         });
@@ -24358,7 +24358,7 @@ var globalFormData = {
             var _this3 = this;
 
             this.loading = true;
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["q" /* getNodes */])(params).then(function (res) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["s" /* getNodes */])(params).then(function (res) {
                 _this3.totalPage = res.total;
                 _this3.currentPage = params.currentPage;
                 _this3.currentPageSize = params.currentPageSize;
@@ -24376,7 +24376,7 @@ var globalFormData = {
                 this.$message.error('请选择要删除的记录');
                 return;
             }
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["j" /* deleteNode */])({ id: this.tempRow.id }).then(function (res) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["k" /* deleteNode */])({ id: this.tempRow.id }).then(function (res) {
                 if (res.code != 0) {
                     _this4.$message({
                         message: '删除失败',
@@ -24949,35 +24949,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -24985,14 +24956,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var globalFormData = {
     id: '',
     name: '',
-    guard_name: '',
-    title: '',
-    path: '',
-    sort: 0,
-    type: 1,
-    pid: 0,
-    is_menu: "0",
-    description: ''
+    email: '',
+    password: '',
+    is_admin: '',
+    role_id: 0,
+    cid: 1
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
@@ -25022,12 +24990,12 @@ var globalFormData = {
         var _this = this;
 
         var params = { currentPage: this.currentPage, currentPageSize: this.currentPageSize, type: 1 };
-        getUsers(params).then(function (res) {
+        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["u" /* getUsers */])(params).then(function (res) {
             _this.totalPage = res.total;
             _this.tableData = res.data;
             _this.loading = false;
         });
-        getUsers({}).then(function (res) {
+        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["u" /* getUsers */])({}).then(function (res) {
 
             _this.permises = res.data;
         });
@@ -25180,7 +25148,7 @@ var globalFormData = {
             var _this2 = this;
 
             this.submitLoading = true;
-            createUser(this.formData).then(function (res) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["f" /* createUser */])(this.formData).then(function (res) {
                 _this2.formData = globalFormData;
                 _this2.submitLoading = false;
                 _this2.dialogFormVisible = false;
@@ -25202,7 +25170,7 @@ var globalFormData = {
             var _this3 = this;
 
             this.loading = true;
-            getUsers(params).then(function (res) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["u" /* getUsers */])(params).then(function (res) {
                 _this3.totalPage = res.total;
                 _this3.currentPage = params.currentPage;
                 _this3.currentPageSize = params.currentPageSize;
@@ -25220,7 +25188,7 @@ var globalFormData = {
                 this.$message.error('请选择要删除的记录');
                 return;
             }
-            deleteUser({ id: this.tempRow.id }).then(function (res) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["m" /* deleteUser */])({ id: this.tempRow.id }).then(function (res) {
                 if (res.code != 0) {
                     _this4.$message({
                         message: '删除失败',
@@ -25314,33 +25282,11 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("el-table-column", { attrs: { prop: "title", label: "标题" } }),
+          _c("el-table-column", { attrs: { prop: "name", label: "名称" } }),
           _vm._v(" "),
-          _c("el-table-column", { attrs: { prop: "name", label: "标识" } }),
+          _c("el-table-column", { attrs: { prop: "email", label: "邮箱" } }),
           _vm._v(" "),
-          _c("el-table-column", {
-            attrs: { prop: "guard_name", label: "分组标识" }
-          }),
-          _vm._v(" "),
-          _c("el-table-column", { attrs: { prop: "path", label: "路径" } }),
-          _vm._v(" "),
-          _c("el-table-column", { attrs: { prop: "sort", label: "排序" } }),
-          _vm._v(" "),
-          _c("el-table-column", {
-            attrs: { prop: "type", formatter: _vm.format_type, label: "类型" }
-          }),
-          _vm._v(" "),
-          _c("el-table-column", {
-            attrs: {
-              prop: "is_menu",
-              formatter: _vm.format_is_menu,
-              label: "是否菜单"
-            }
-          }),
-          _vm._v(" "),
-          _c("el-table-column", {
-            attrs: { prop: "description", label: "描述" }
-          }),
+          _c("el-table-column", { attrs: { prop: "role_id", label: "路径" } }),
           _vm._v(" "),
           _c("el-table-column", {
             attrs: { prop: "created_at", label: "创建日期" }
@@ -25402,7 +25348,7 @@ var render = function() {
             [
               _c(
                 "el-form-item",
-                { attrs: { label: "上级" } },
+                { attrs: { label: "角色" } },
                 [
                   _c("el-cascader", {
                     attrs: {
@@ -25426,7 +25372,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "el-form-item",
-                { attrs: { label: "标识" } },
+                { attrs: { label: "名称" } },
                 [
                   _c("el-input", {
                     model: {
@@ -25443,24 +25389,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "el-form-item",
-                { attrs: { label: "分组标识" } },
-                [
-                  _c("el-input", {
-                    model: {
-                      value: _vm.formData.guard_name,
-                      callback: function($$v) {
-                        _vm.$set(_vm.formData, "guard_name", $$v)
-                      },
-                      expression: "formData.guard_name"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "标题" } },
+                { attrs: { label: "Email" } },
                 [
                   _c("el-input", {
                     model: {
@@ -25477,7 +25406,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "el-form-item",
-                { attrs: { label: "路径" } },
+                { attrs: { label: "密码" } },
                 [
                   _c("el-input", {
                     model: {
@@ -25486,105 +25415,6 @@ var render = function() {
                         _vm.$set(_vm.formData, "path", $$v)
                       },
                       expression: "formData.path"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "是否菜单" } },
-                [
-                  _c(
-                    "el-radio",
-                    {
-                      attrs: { label: "0", border: "" },
-                      model: {
-                        value: _vm.formData.is_menu,
-                        callback: function($$v) {
-                          _vm.$set(_vm.formData, "is_menu", $$v)
-                        },
-                        expression: "formData.is_menu"
-                      }
-                    },
-                    [_vm._v("否")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "el-radio",
-                    {
-                      attrs: { label: "1", border: "" },
-                      model: {
-                        value: _vm.formData.is_menu,
-                        callback: function($$v) {
-                          _vm.$set(_vm.formData, "is_menu", $$v)
-                        },
-                        expression: "formData.is_menu"
-                      }
-                    },
-                    [_vm._v("是")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "排序" } },
-                [
-                  _c("el-input", {
-                    model: {
-                      value: _vm.formData.sort,
-                      callback: function($$v) {
-                        _vm.$set(_vm.formData, "sort", $$v)
-                      },
-                      expression: "formData.sort"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "类型" } },
-                [
-                  _c(
-                    "el-select",
-                    {
-                      attrs: { placeholder: "请选择" },
-                      model: {
-                        value: _vm.formData.type,
-                        callback: function($$v) {
-                          _vm.$set(_vm.formData, "type", $$v)
-                        },
-                        expression: "formData.type"
-                      }
-                    },
-                    _vm._l(_vm.types, function(item) {
-                      return _c("el-option", {
-                        key: item.value,
-                        attrs: { label: item.label, value: item.value }
-                      })
-                    })
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "描述" } },
-                [
-                  _c("el-input", {
-                    attrs: { type: "textarea" },
-                    model: {
-                      value: _vm.formData.description,
-                      callback: function($$v) {
-                        _vm.$set(_vm.formData, "description", $$v)
-                      },
-                      expression: "formData.description"
                     }
                   })
                 ],
@@ -25873,12 +25703,12 @@ var globalFormData = {
         var _this = this;
 
         var params = { currentPage: this.currentPage, currentPageSize: this.currentPageSize };
-        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["n" /* getBrandConfigs */])(params).then(function (res) {
+        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["p" /* getBrandConfigs */])(params).then(function (res) {
             _this.totalPage = res.total;
             _this.tableData = res.data;
             _this.loading = false;
         });
-        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["o" /* getBrands */])({ type: 1 }).then(function (res) {
+        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["q" /* getBrands */])({ type: 1 }).then(function (res) {
             _this.carBrands = res.data;
             localStorage.brands = JSON.stringify(res.data);
         });
@@ -26026,7 +25856,7 @@ var globalFormData = {
             var _this3 = this;
 
             this.loading = true;
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["n" /* getBrandConfigs */])(params).then(function (res) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["p" /* getBrandConfigs */])(params).then(function (res) {
                 _this3.totalPage = res.total;
                 _this3.currentPage = params.currentPage;
                 _this3.currentPageSize = params.currentPageSize;
@@ -26044,7 +25874,7 @@ var globalFormData = {
                 this.$message.error('请选择要删除的记录');
                 return;
             }
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["h" /* deleteBrandConfig */])({ id: this.tempRow.id }).then(function (res) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["i" /* deleteBrandConfig */])({ id: this.tempRow.id }).then(function (res) {
                 if (res.code != 0) {
                     _this4.$message({
                         message: '删除失败',
@@ -26660,12 +26490,12 @@ var globalFormData = {
         var _this = this;
 
         var params = { currentPage: this.currentPage, currentPageSize: this.currentPageSize };
-        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["s" /* getVinConfigs */])(params).then(function (res) {
+        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["v" /* getVinConfigs */])(params).then(function (res) {
             _this.totalPage = res.total;
             _this.tableData = res.data;
             _this.loading = false;
         });
-        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["n" /* getBrandConfigs */])({ type: 1 }).then(function (res) {
+        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["p" /* getBrandConfigs */])({ type: 1 }).then(function (res) {
             _this.carBrandConfigs = res.data;
         });
     },
@@ -26725,7 +26555,7 @@ var globalFormData = {
             var _this2 = this;
 
             this.submitLoading = true;
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["f" /* createVinConfig */])(this.formData).then(function (res) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["g" /* createVinConfig */])(this.formData).then(function (res) {
                 _this2.formData = globalFormData;
                 _this2.submitLoading = false;
                 _this2.dialogFormVisible = false;
@@ -26746,7 +26576,7 @@ var globalFormData = {
             var _this3 = this;
 
             this.loading = true;
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["s" /* getVinConfigs */])(params).then(function (res) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["v" /* getVinConfigs */])(params).then(function (res) {
                 _this3.totalPage = res.total;
                 _this3.currentPage = params.currentPage;
                 _this3.currentPageSize = params.currentPageSize;
@@ -26764,7 +26594,7 @@ var globalFormData = {
                 this.$message.error('请选择要删除的记录');
                 return;
             }
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["l" /* deleteVinConfig */])({ id: this.tempRow.id }).then(function (res) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["n" /* deleteVinConfig */])({ id: this.tempRow.id }).then(function (res) {
                 if (res.code != 0) {
                     _this4.$message({
                         message: '删除失败',
@@ -27335,7 +27165,7 @@ var globalFormData = {
         var _this = this;
 
         var params = { currentPage: this.currentPage, currentPageSize: this.currentPageSize, type: 1 };
-        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["m" /* getBaseInfos */])(params).then(function (res) {
+        Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["o" /* getBaseInfos */])(params).then(function (res) {
             _this.totalPage = res.total;
             _this.tableData = res.data;
             _this.loading = false;
@@ -27382,7 +27212,7 @@ var globalFormData = {
             var _this3 = this;
 
             this.loading = true;
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["m" /* getBaseInfos */])(params).then(function (res) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["o" /* getBaseInfos */])(params).then(function (res) {
                 _this3.totalPage = res.total;
                 _this3.currentPage = params.currentPage;
                 _this3.currentPageSize = params.currentPageSize;
@@ -27400,7 +27230,7 @@ var globalFormData = {
                 this.$message.error('请选择要删除的记录');
                 return;
             }
-            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["g" /* deleteBaseInfo */])({ id: this.tempRow.id }).then(function (res) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_api__["h" /* deleteBaseInfo */])({ id: this.tempRow.id }).then(function (res) {
                 if (res.code != 0) {
                     _this4.$message({
                         message: '删除失败',
