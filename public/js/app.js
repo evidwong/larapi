@@ -24949,35 +24949,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -24985,14 +24956,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var globalFormData = {
     id: '',
     name: '',
-    guard_name: '',
-    title: '',
-    path: '',
-    sort: 0,
-    type: 1,
-    pid: 0,
-    is_menu: "0",
-    description: ''
+    email: '',
+    password: '',
+    is_admin: '',
+    role_id: 0,
+    cid: 1
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
@@ -25314,33 +25282,11 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("el-table-column", { attrs: { prop: "title", label: "标题" } }),
+          _c("el-table-column", { attrs: { prop: "name", label: "名称" } }),
           _vm._v(" "),
-          _c("el-table-column", { attrs: { prop: "name", label: "标识" } }),
+          _c("el-table-column", { attrs: { prop: "email", label: "邮箱" } }),
           _vm._v(" "),
-          _c("el-table-column", {
-            attrs: { prop: "guard_name", label: "分组标识" }
-          }),
-          _vm._v(" "),
-          _c("el-table-column", { attrs: { prop: "path", label: "路径" } }),
-          _vm._v(" "),
-          _c("el-table-column", { attrs: { prop: "sort", label: "排序" } }),
-          _vm._v(" "),
-          _c("el-table-column", {
-            attrs: { prop: "type", formatter: _vm.format_type, label: "类型" }
-          }),
-          _vm._v(" "),
-          _c("el-table-column", {
-            attrs: {
-              prop: "is_menu",
-              formatter: _vm.format_is_menu,
-              label: "是否菜单"
-            }
-          }),
-          _vm._v(" "),
-          _c("el-table-column", {
-            attrs: { prop: "description", label: "描述" }
-          }),
+          _c("el-table-column", { attrs: { prop: "role_id", label: "路径" } }),
           _vm._v(" "),
           _c("el-table-column", {
             attrs: { prop: "created_at", label: "创建日期" }
@@ -25402,7 +25348,7 @@ var render = function() {
             [
               _c(
                 "el-form-item",
-                { attrs: { label: "上级" } },
+                { attrs: { label: "角色" } },
                 [
                   _c("el-cascader", {
                     attrs: {
@@ -25426,7 +25372,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "el-form-item",
-                { attrs: { label: "标识" } },
+                { attrs: { label: "名称" } },
                 [
                   _c("el-input", {
                     model: {
@@ -25443,24 +25389,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "el-form-item",
-                { attrs: { label: "分组标识" } },
-                [
-                  _c("el-input", {
-                    model: {
-                      value: _vm.formData.guard_name,
-                      callback: function($$v) {
-                        _vm.$set(_vm.formData, "guard_name", $$v)
-                      },
-                      expression: "formData.guard_name"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "标题" } },
+                { attrs: { label: "Email" } },
                 [
                   _c("el-input", {
                     model: {
@@ -25477,7 +25406,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "el-form-item",
-                { attrs: { label: "路径" } },
+                { attrs: { label: "密码" } },
                 [
                   _c("el-input", {
                     model: {
@@ -25486,105 +25415,6 @@ var render = function() {
                         _vm.$set(_vm.formData, "path", $$v)
                       },
                       expression: "formData.path"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "是否菜单" } },
-                [
-                  _c(
-                    "el-radio",
-                    {
-                      attrs: { label: "0", border: "" },
-                      model: {
-                        value: _vm.formData.is_menu,
-                        callback: function($$v) {
-                          _vm.$set(_vm.formData, "is_menu", $$v)
-                        },
-                        expression: "formData.is_menu"
-                      }
-                    },
-                    [_vm._v("否")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "el-radio",
-                    {
-                      attrs: { label: "1", border: "" },
-                      model: {
-                        value: _vm.formData.is_menu,
-                        callback: function($$v) {
-                          _vm.$set(_vm.formData, "is_menu", $$v)
-                        },
-                        expression: "formData.is_menu"
-                      }
-                    },
-                    [_vm._v("是")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "排序" } },
-                [
-                  _c("el-input", {
-                    model: {
-                      value: _vm.formData.sort,
-                      callback: function($$v) {
-                        _vm.$set(_vm.formData, "sort", $$v)
-                      },
-                      expression: "formData.sort"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "类型" } },
-                [
-                  _c(
-                    "el-select",
-                    {
-                      attrs: { placeholder: "请选择" },
-                      model: {
-                        value: _vm.formData.type,
-                        callback: function($$v) {
-                          _vm.$set(_vm.formData, "type", $$v)
-                        },
-                        expression: "formData.type"
-                      }
-                    },
-                    _vm._l(_vm.types, function(item) {
-                      return _c("el-option", {
-                        key: item.value,
-                        attrs: { label: item.label, value: item.value }
-                      })
-                    })
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-form-item",
-                { attrs: { label: "描述" } },
-                [
-                  _c("el-input", {
-                    attrs: { type: "textarea" },
-                    model: {
-                      value: _vm.formData.description,
-                      callback: function($$v) {
-                        _vm.$set(_vm.formData, "description", $$v)
-                      },
-                      expression: "formData.description"
                     }
                   })
                 ],
