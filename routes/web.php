@@ -38,6 +38,6 @@ Route::post('getRoles', 'PermisesController@getRoles')->name('permises.getRoles'
 Route::post('createRole', 'PermisesController@createRole')->name('permises.createRole');
 Route::post('deleteRole', 'PermisesController@deleteRole')->name('permises.deleteRole');
 
-Route::post('getUsers', 'UsersController@getRoles')->name('users.getRoles');
-Route::post('createUser', 'UsersController@createRole')->name('users.createRole');
-Route::post('deleteUser', 'UsersController@deleteRole')->name('users.deleteRole');
+Route::post('getUsers', 'UsersController@getUsers')->name('users.getUsers');
+Route::post('createUser', 'UsersController@createUser')->name('users.createUser');
+Route::post('deleteUser', 'UsersController@deleteUser')->name('users.deleteUser');

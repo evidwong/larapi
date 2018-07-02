@@ -52,7 +52,7 @@ export default new Router({//定义路由
             },
         },
         {
-            path: '/promiss/users',
+            path: '/promise/users',
             name: '用户管理',
             component: require('../views/admin/promise/users'),
             meta : {

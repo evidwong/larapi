@@ -84,7 +84,7 @@
 
 </template>
 <script>
-    import {getNodes, createNode, deleteNode} from '../../../api/api';
+    import {getUsers, createUser, deleteUser} from '../../../api/api';
     import Page from "../../../components/Page.vue"
 
     var globalFormData = {

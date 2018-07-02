@@ -32,7 +32,7 @@ class UsersController extends Controller
             $node->update($data);
             return response()->json(['code' => 0, 'msg' => '修改成功']);
         } else {
-            Permission::create($data);
+            User::create($data);
             return response()->json(['code' => 0, 'msg' => '添加成功']);
         }
     }
