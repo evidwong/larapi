@@ -37,7 +37,7 @@ router.beforeEach((to, from, next) => {
     }
     // 这里的meta就是我们刚刚在路由里面配置的meta
     if (to.meta.requireAuth) {
-        let user = JSON.parse(sessionStorage.getItem('userInfo'))
+        let user = JSON.parse(sessionStorage.getItem('userInfo'));
         // 下面这个判断是自行实现到底是否有没有登录
         if (!user) {
             next({

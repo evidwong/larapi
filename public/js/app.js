@@ -12220,129 +12220,129 @@ function setStyle(element, styleName, value) {
 var base = 'http://larapi.test';
 
 var requestLogin = function requestLogin(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/login', params).then(function (res) {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/api/login', params).then(function (res) {
     return res.data;
   });
 };
 var getMerchants = function getMerchants(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/getMerchants', params).then(function (res) {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/api/getMerchants', params).then(function (res) {
     return res.data;
   });
 };
 var createMerchants = function createMerchants(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/createMerchants', params).then(function (res) {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/api/createMerchants', params).then(function (res) {
     return res.data;
   });
 };
 var deleteMerchants = function deleteMerchants(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/deleteMerchants', params).then(function (res) {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/api/deleteMerchants', params).then(function (res) {
     return res.data;
   });
 };
 var delayMerchants = function delayMerchants(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/delayMerchants', params).then(function (res) {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/api/delayMerchants', params).then(function (res) {
     return res.data;
   });
 };
 
 var getBaseInfos = function getBaseInfos(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/getBaseInfos', params).then(function (res) {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/api/getBaseInfos', params).then(function (res) {
     return res.data;
   });
 };
 var createBaseInfo = function createBaseInfo(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/createBaseInfo', params).then(function (res) {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/api/createBaseInfo', params).then(function (res) {
     return res.data;
   });
 };
 var deleteBaseInfo = function deleteBaseInfo(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/deleteBaseInfo', params).then(function (res) {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/api/deleteBaseInfo', params).then(function (res) {
     return res.data;
   });
 };
 
 var getBrands = function getBrands(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/getBrands', params).then(function (res) {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/api/getBrands', params).then(function (res) {
     return res.data;
   });
 };
 var getBrandConfigs = function getBrandConfigs(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/getBrandConfigs', params).then(function (res) {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/api/getBrandConfigs', params).then(function (res) {
     return res.data;
   });
 };
 
 var createBrandConfig = function createBrandConfig(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/createBrandConfig', params).then(function (res) {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/api/createBrandConfig', params).then(function (res) {
     return res.data;
   });
 };
 var deleteBrandConfig = function deleteBrandConfig(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/deleteBrandConfig', params).then(function (res) {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/api/deleteBrandConfig', params).then(function (res) {
     return res.data;
   });
 };
 
 var getVinConfigs = function getVinConfigs(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/getVinConfigs', params).then(function (res) {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/api/getVinConfigs', params).then(function (res) {
     return res.data;
   });
 };
 var createVinConfig = function createVinConfig(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/createVinConfig', params).then(function (res) {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/api/createVinConfig', params).then(function (res) {
     return res.data;
   });
 };
 var deleteVinConfig = function deleteVinConfig(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/deleteVinConfig', params).then(function (res) {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/api/deleteVinConfig', params).then(function (res) {
     return res.data;
   });
 };
 
 var getNodes = function getNodes(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/getNodes', params).then(function (res) {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/api/getNodes', params).then(function (res) {
     return res.data;
   });
 };
 var createNode = function createNode(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/createNode', params).then(function (res) {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/api/createNode', params).then(function (res) {
     return res.data;
   });
 };
 var deleteNode = function deleteNode(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/deleteNode', params).then(function (res) {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/api/deleteNode', params).then(function (res) {
     return res.data;
   });
 };
 
 var getRoles = function getRoles(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/getRoles', params).then(function (res) {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/api/getRoles', params).then(function (res) {
     return res.data;
   });
 };
 var createRole = function createRole(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/createRole', params).then(function (res) {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/api/createRole', params).then(function (res) {
     return res.data;
   });
 };
 var deleteRole = function deleteRole(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/deleteRole', params).then(function (res) {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/api/deleteRole', params).then(function (res) {
     return res.data;
   });
 };
 
 var getUsers = function getUsers(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/getUsers', params).then(function (res) {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/api/getUsers', params).then(function (res) {
     return res.data;
   });
 };
 var createUser = function createUser(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/createUser', params).then(function (res) {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/api/createUser', params).then(function (res) {
     return res.data;
   });
 };
 var deleteUser = function deleteUser(params) {
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/deleteUser', params).then(function (res) {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(base + '/api/deleteUser', params).then(function (res) {
     return res.data;
   });
 };
@@ -20521,41 +20521,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            tableData: [{
-                date: '2016-05-03',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-            }, {
-                date: '2016-05-02',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-            }, {
-                date: '2016-05-04',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-            }],
+            tableData: [],
             loading: false
         };
     }
@@ -20569,33 +20539,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "el-table",
-    {
-      directives: [
-        {
-          name: "loading",
-          rawName: "v-loading",
-          value: _vm.loading,
-          expression: "loading"
-        }
-      ],
-      staticStyle: { width: "100%" },
-      attrs: { data: _vm.tableData }
-    },
-    [
-      _c("el-table-column", {
-        attrs: { prop: "date", label: "日期", width: "180" }
-      }),
-      _vm._v(" "),
-      _c("el-table-column", {
-        attrs: { prop: "name", label: "姓名", width: "180" }
-      }),
-      _vm._v(" "),
-      _c("el-table-column", { attrs: { prop: "address", label: "地址" } })
-    ],
-    1
-  )
+  return _c("div", [_vm._v("百思易汽车配件查询系统")])
 }
 var staticRenderFns = []
 render._withStripped = true
